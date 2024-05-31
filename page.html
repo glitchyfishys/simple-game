@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<title>eternea inftis</title>
+<html>
+<head>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main id="main" style="display: none">
+        <div id="time" class="toptext">
+            some game
+        </div>
+        <div class="upgrades" id="upgrades"></div>
+        <div class="goldsliders" id="goldsliders"><text id="slidermax"></text></div>
+        <div id="notify" class="notifyoverlay"></div>
+        <div id="auto" class="auto">
+            toggle autobuyers<br>
+        </div>
+        <div id="settings" class="settings">
+            hold "M" to buy time upgrades<br>
+            press "C" to leave challenges<br>
+            hotkeys for resets are their first letter<br>
+            you can save with ctrl + s<br>
+            you can change tabs with arrow keys<br>
+            pressing V inverts colors<br>
+            <p style="color: crimson;">there is no offline progress</p>
+            <div id="sgoldifiy">
+                goldify animation
+            <input type="checkbox" id="goldifiy" checked="true">
+            </div>
+            <div id="scrunch">
+                infinity animation
+                <input type="checkbox" id="crunch" checked="true">
+            </div>
+            <div id="seternity">
+                eternity animation
+                <input type="checkbox" id="eternity" checked="true">
+            </div>
+
+            <div id="sdilation">
+                dilation animation
+                <input type="checkbox" id="dilation" checked="true">
+            </div>
+            <div id="sarmageddon">
+                armageddon animation
+                <input type="checkbox" id="armageddon" checked="true">
+            </div>
+            <br><br>
+            <button class="devbutton" style="background-color: red; border-color: red;" onclick="dev.hardreset()">reset the game</button>
+        </div>
+        <div id="challenge" class="challenge-tab">
+            <span id="challengeunlock">unlock</span><br>
+        </div>
+
+        <div id="dilation-tab" class="dilation-tab">
+            <div>starting dilation causes an eternity <br>
+                completing an eternity will give dilated time based on time</div>
+            <button onclick="startdilation()" class="startdilation" id="startdilation"><span>hi</span></button>
+        </div>
+        <div id="dev" class="dev" style="color: white;">
+            <br>
+            <span>add, unlock, dev stuff </span><br>
+            <input type="text" class="devn" value="1e1e10" id="t">
+            <button class="devbutton" onclick="dev.addtime(BN.prase(document.getElementById('t').value))">add time</button>
+            <button class="devbutton" onclick="dev.addgold(BN.prase(document.getElementById('t').value))">add gold</button>
+            <button class="devbutton" onclick="dev.addinfinitypoints(BN.prase(document.getElementById('t').value))">add IP</button>
+            <button class="devbutton" onclick="dev.addeternitypoints(BN.prase(document.getElementById('t').value))">add EP</button>
+            <button class="devbutton" onclick="dev.adddilatedtime(BN.prase(document.getElementById('t').value))">add DT</button>
+            <button class="devbutton" onclick="dev.addrelics(BN.prase(document.getElementById('t').value))">add relics</button>
+            <br><br>
+            <button class="devbutton" onclick="dev.progress(progress())">game progress</button>
+            <br><br>
+            <button class="devbutton" onclick="dev.changechallengecompleation(document.getElementById('tt').value)">toggle challenge compleation</button>
+            <button class="devbutton" onclick="dev.completechallengeupto(document.getElementById('tt').value)">complete challenges up to x</button>
+            <input type="number" class="devc" value="0" min="0" max="11" id="tt">
+            <br><br>
+            auto gold gain
+            <input type="checkbox" id="autogoldgain"><br>
+            auto IP gain
+            <input type="checkbox" id="autoIPgain"><br>
+            auto EP gain
+            <input type="checkbox" id="autoEPgain"><br>
+            auto DT gain (when dilated)
+            <input type="checkbox" id="autoDTgain"><br>
+            auto relics gain (when doomed)
+            <input type="checkbox" id="autorelicsgain">
+            <br><br>
+            <button class="devbutton" style="background-color: red; border-color: red;" onclick="dev.hardreset()">reset the game</button>
+        </div>
+
+    </main>
+    <div id="tabholder" class="tabholder" style="display: none"></div>
+</body>
+    <script src="bignumber.js"></script>
+    <script src="dev.js"></script>
+    <script src="upgrade.js"></script>
+    <script src="timeupgrades.js"></script>
+    <script src="reset.js"></script>
+    <script src="notify.js"></script>
+    <script src="tabs.js"></script>
+    <script src="goldensliders.js"></script>
+    <script src="autobuyers.js"></script>
+    <script src="conts.js"></script>
+    <script src="challenges.js"></script>
+    <script src="strikes.js"></script>
+    <script src="game.js" onload="start()"></script>
+</html>
+    

@@ -1,0 +1,386 @@
+button{
+    border-color: pink;
+    background-color: #555555;
+    color: white;
+    height: 100px;
+}
+
+text{
+    color: white;
+    pointer-events: none; 
+}
+
+.unbuyable{
+    border-color: red;
+}
+
+.brought{
+    border-color: lime;
+}
+
+.tab{
+    width: 100px;
+    height: 25px;
+}
+
+.buyable{
+    border-color: yellow;
+}
+
+.upgrade{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.upgrades{
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+.toptext{
+    align-self: center;
+    text-align: center;
+    color: white;
+}
+
+body{
+    background-color: black;
+    overflow-x: hidden;
+    width: calc(100% - 105px);
+    margin-left: 105px;
+}
+
+.notifyoverlay {
+    position: fixed;
+    right: -150px;
+    top: 0px;
+}
+.notify {
+    width: 150px;
+    background-color: yellow;
+    color: black;
+    border: 5px white;
+    text-align: center;
+}
+
+.hidden {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    width: 0px;
+    height: 0px;
+}
+
+span{
+    pointer-events: none;
+    color: white;
+}
+
+.reset{
+    animation: resetpulse linear 1s infinite;
+}
+
+.tabholder{
+    position: fixed;
+    width: 5px;
+    top: 0px;
+    left: 0px;
+    border: 0px;
+}
+
+
+.goldsliders{
+    margin-top: 15px;
+    top: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+.gslider{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 150px;
+    height: 10px;
+}
+
+.slidertext{
+    color: white;
+}
+
+.settings{
+    margin-top: 15px;
+    color: white;
+    text-align: center;
+}
+
+.auto{
+    margin-top: 15px;
+    color: white;
+    text-align: center;
+}
+
+.challenge{
+    color: white;
+    text-align: center;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.icdone{
+    animation: ICpulse linear 10s infinite;
+}
+
+.ecdone{
+    animation: ECpulse linear 10s infinite;
+}
+
+.dilation-tab{
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+.challenge-tab{
+    text-align: center;
+    margin-top: 15px;
+}
+
+.startdilation{
+    margin-top: 15px;
+    height: 100px;
+    width: 250px;
+    animation: dil linear 5s infinite;
+}
+
+.dev{
+    align-items: center;
+    text-align: center;
+}
+.t{
+    display: block;
+}
+
+.invert{
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+@keyframes dil{
+    0%{
+        border-color: green;
+        box-shadow: lime 5px 5px, lime -5px -5px;
+    }
+    25%{
+        border-color: lime;
+        box-shadow: lime 5px -5px, lime -5px 5px;
+    }
+    50%{
+        border-color: lime;
+        box-shadow: lime -5px -5px, lime 5px 5px;
+    }
+    75%{
+        border-color: lime;
+        box-shadow: lime -5px 5px, lime 5px -5px;
+    }
+    100%{
+        border-color: green;
+        box-shadow: lime 5px 5px, lime -5px -5px;
+    }
+
+}
+
+@keyframes resetpulse{
+    0%{
+        border-color: yellow;
+    }
+    50%{
+        border-color: red;
+    }
+    100%{
+        border-color: yellow;
+    }
+}
+
+@keyframes ICpulse{
+    0%{
+        background-color: orange;
+    }
+    50%{
+        background-color: #c27b00;
+    }
+    100%{
+        background-color: orange;
+    }
+}
+
+@keyframes ECpulse{
+    0%{
+        background-color: purple;
+    }
+    50%{
+        background-color: #b500be;
+    }
+    100%{
+        background-color: purple;
+    }
+}
+
+/* === range theme and appearance === */
+
+input[type="range"].s1 {
+    -webkit-appearance: none;
+    appearance: none;
+	color: gold;
+    background: black;
+    outline: none;
+    border: 3px solid gold;
+    border-radius: 5px;
+}
+input[type="range"].s2 {
+    -webkit-appearance: none;
+    appearance: none;
+	color: blue;
+    background: black;
+    outline: none;
+    border: 3px solid blue;
+    border-radius: 5px;
+}
+input[type="range"].s3 {
+    -webkit-appearance: none;
+    appearance: none;
+	color: gold;
+    background: black;
+    outline: none;
+    border: 3px solid gold;
+    border-radius: 5px;
+}
+input[type="range"].s4 {
+    -webkit-appearance: none;
+    appearance: none;
+	color: purple;
+    background: black;
+    outline: none;
+    border: 3px solid purple;
+    border-radius: 5px;
+}
+
+.devn{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input[type="text"].devn {
+    -webkit-appearance: none;
+    appearance: none;
+    text-align: center;
+	color: white;
+    background: black;
+    outline: none;
+    border: 3px solid purple;
+    border-radius: 5px;
+}
+
+input[type="number"].devc {
+    -webkit-appearance: none;
+    appearance: none;
+	color: white;
+    background: black;
+    outline: none;
+    border: 3px solid purple;
+    border-radius: 5px;
+    width: 30px;
+}
+/* === range commons === */
+
+input:disabled {
+	filter: grayscale(0.5);
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+.devbutton{
+    border-color: white;
+    height: 25px;
+}
+
+input[type=checkbox] {
+    height: 15px;
+    width: 15px;
+    accent-color: lime;
+    cursor: pointer;
+}
+
+/* Hover effect */
+input[type=checkbox]:hover{
+    outline: 8px solid yellow;
+    outline-offset: -8px;
+    border-radius: 3px;
+}
+
+/* Active effect */
+input[type=checkbox]:active{
+    outline: 8px solid red;
+    outline-offset: -8px;
+    border-radius: 3px;
+}
+
+/* Checked effect */
+input[type=checkbox]:checked{
+    outline: 2px solid lime;
+    outline-offset: -2px;
+    border-radius: 3px;
+}
+
+
+
+/* === WebKit specific styles === */
+
+.s1::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 30px;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid gold;
+    border-radius: 4px;
+}
+.s2::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 30px;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid blue;
+    border-radius: 4px;
+}
+.s3::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 30px;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid gold;
+    border-radius: 4px;
+}
+.s4::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 30px;
+    background: #000;
+    cursor: pointer;
+    border: 2px solid purple;
+    border-radius: 4px;
+}
