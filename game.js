@@ -414,7 +414,8 @@ function upgradebits(up, key){
 
 function event(){
     document.addEventListener("keydown", event => keyevents(event));
-    document.addEventListener('contextmenu', event => event.preventDefault());
+    // a bad thing
+    //document.addEventListener('contextmenu', event => event.preventDefault());
 }
 
 function keyevents(event){
