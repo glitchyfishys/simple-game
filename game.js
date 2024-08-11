@@ -53,6 +53,7 @@ var player = {
     softcapeffectdiv: 1,
     strikebits:0,
     end: false,
+    lasttick: 0,
 }
 
 function start() {
@@ -85,13 +86,15 @@ function autotick(){
     auto.forEach(x => x.tick())
 }
 
-function Tick(i = 0) {
+function Tick(tick = 0) {
     if(player.challenge.doomed && ups[59].brought) glitchstrikes[6].trigger();
     if(player.challenge.doomed && player.softcapeffectdiv == Infinity ) glitchstrikes[7].trigger();
     if(player.money.relics.gt(new BN(1,1000))) glitchstrikes[8].trigger();
     if(player.softcapeffectdiv == Infinity) ending();
-    deltatime = (Date.now() - last) / 1000;
-    last = Date.now();
+    if(tick == 0){
+        deltatime = (Date.now() - last) / 1000;
+        last = Date.now();
+    }
     br = player.break;
     if(player.money.time.gt(new BN(1,10000)) && player.money.gold.gt(1e160)) player.hasunlockedchalenges = true;
     time(deltatime);
@@ -289,7 +292,6 @@ function challengemult(effect, type = "time"){
 }
 
 function save(){
-    notify("game saved", 2);
     sliders.forEach(x => {
         player.goldensliders.value[x.id] = x.value;
         player.goldensliders.currentvalue[x.id] = x.currentvalue;
@@ -315,12 +317,15 @@ function save(){
         if(x.challengetype == "infinity" && x.competed) player.challenge.ICcompeted |= ( 1 << x.id);
         if(!x.ele.classList.contains("hidden") && x.challengetype == "eternity") player.challenge.ECunlocks |= ( 1 << x.id);
         if(x.challengetype == "eternity" && x.competed) player.challenge.ECcompeted |= ( 1 << x.id);
-    })
-
+    });
+    
+    player.lasttick = last;
     glitchstrikes.forEach(x => {
         if(x.triggered)player.strikebits |= 1 << x.id;
-    })
+    });
+    
     localStorage.setItem("player", JSON.stringify(player) );
+    notify("game saved", 2);
 }
 
 function load(){
@@ -402,6 +407,11 @@ function load(){
         document.getElementById("autoDTgain").checked = p.dev.auto[3];
         document.getElementById("autorelicsgain").checked = p.dev.auto[4];
     }
+
+    for(let n = 0; n < 100; n++) Tick(p.lasttick / 100);
+    
+    player.lasttick = 0;
+    
 }
 
 function upgradebits(up, key){
