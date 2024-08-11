@@ -134,6 +134,7 @@ class BN{
     pow(bn = 1) {
         if (typeof bn === "number") bn = new BN(bn)
 
+	if(this.eq(0)) return new BN(0);
         let m = (bn.m * 10 ** bn.e)
         this.e = (this.e + Math.log10(this.m)) * m;
 
@@ -147,6 +148,7 @@ class BN{
     static pow(Bn, bn = 1) {
         if (typeof Bn === "number") Bn = new BN(Bn);
         if (typeof bn === "number") bn = new BN(bn);
+	    if(Bn.eq(0)) return new BN(0);
         // so input doesn't get edited
         let bignum = {
             m: Bn.m,
