@@ -412,7 +412,7 @@ function load(){
     }
 
     for(let n = 0; n < 100; n++) (Tick(Date.now() - p.lasttick)) / 100;
-    notify("used " + ((Date.now() - p.lasttick) / 100) + " seconds of offline time", 8);
+    notify("used " + (Date.now() - p.lasttick) + " seconds of offline time", 6);
     player.lasttick = 0;
     
 }
