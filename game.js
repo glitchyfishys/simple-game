@@ -411,8 +411,10 @@ function load(){
         document.getElementById("autorelicsgain").checked = p.dev.auto[4];
     }
 
-    for(let n = 0; n < 100; n++) Tick( (Date.now() - p.lasttick) / 1e5);
-    notify("used " + ((Date.now() - p.lasttick) / 1e3) + " seconds of offline time", 6);
+    if(p.lasttick != undefined) {
+        for(let n = 0; n < 100; n++) Tick( (Date.now() - p.lasttick) / 1e5);
+        notify("used " + ((Date.now() - p.lasttick) / 1e3) + " seconds of offline time", 6);
+    }
     player.lasttick = 0;
     
 }
