@@ -5,7 +5,6 @@ var last = Date.now();
 var n = new BN;
 var ticks = 0;
 
-
 var player = {
     money: {
         gold: new BN,
@@ -57,6 +56,7 @@ var player = {
 }
 
 function start() {
+    console.warn("why? how did you get here?");
     event();
     autosetup();
     upgrades.forEach(x => ups[x.inid] = new upgrade(x));
@@ -438,7 +438,7 @@ function keyevents(event){
     }
     if(event.shiftKey && event.ctrlKey && event.key == "I"){
         event.preventDefault();
-        notify("Hey ya",5);
+        notify("Hey what are you doing trying to get into console?",5);
     }
     if(event.key == "m"){
         ups.forEach(x => {
