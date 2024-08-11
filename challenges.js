@@ -100,7 +100,10 @@ const challengedata = [
         for: "IP",
         bordercolor: "purple",
         discription: "time ^ 0.5 but gold ^5: IP ^ 50",
-        goaldiscription: () => (player.challenge.doomed)? "reach e14000 time and lessthan e5000 gold" : "reach e14000 time and lessthan e1000 gold",
+        goaldiscription: () => {
+            if(ups[30].brought) return (player.challenge.doomed ? "reach e14000 time and e5000 gold has been remove" : "reach e14000 time and e1000 gold has been remove");
+            return (player.challenge.doomed ? "reach e14000 time and lessthan e5000 gold" : "reach e14000 time and lessthan e1000 gold");
+        },
         goal: () => player.money.time.gt(new BN(1,14000)) && (player.money.gold.lt(new BN(1,1000)) || ups[30].brought ||(player.challenge.doomed && player.money.gold.lt(new BN(1,5000)))),
         show: () => player.money.time.gt(new BN(1,1.15e5)),
         finish: () => infinity(),
