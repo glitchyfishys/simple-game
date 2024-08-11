@@ -278,7 +278,7 @@ function timemults(){
 }
 
 function goldeffect(){
-    return player.money.gold.lt(1) ? new BN(1,0) : BN.pow(player.money.gold,1.2);
+    return BN.pow(player.money.gold,1.2).add(1);
 }
 
 function challengemult(effect, type = "time"){
