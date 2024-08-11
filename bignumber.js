@@ -4,8 +4,8 @@ class BN{
     e=0;
 
     constructor(m=0, e=0,fix = true) {
-	if(m == 0 || Number.isNaN(m) || m = undefined) {this.m=0,this.e=0; return}
-	if(e == 0 || Number.isNaN(e) || e = undefined) {this.m=0,this.e=0; return}
+	if(m == 0 || Number.isNaN(m) || m == undefined) {this.m=0,this.e=0; return}
+	if(e == 0 || Number.isNaN(e) || e == undefined) {this.m=0,this.e=0; return}
 	    
         if(m == Infinity || e == Infinity){
             this.m = 1.79;
