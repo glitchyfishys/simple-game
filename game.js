@@ -95,9 +95,12 @@ function Tick(tick = 0) {
         deltatime = (Date.now() - last) / 1000;
         last = Date.now();
     }
+    else{
+        deltatime = tick;
+    }
     br = player.break;
     if(player.money.time.gt(new BN(1,10000)) && player.money.gold.gt(1e160)) player.hasunlockedchalenges = true;
-    time(deltatime == 0 ? tick : deltatime);
+    time(deltatime);
     if(ups[59].brought) player.softcapeffectdiv *= (deltatime*3) + 1;
     if(ups[36].brought || document.getElementById("autogoldgain").checked) player.money.gold.add(ups[8].effectordefault(0).mult(deltatime));
     if(document.getElementById("autoIPgain").checked) player.money.infinitypoints.add(ups[19].effectordefault(0).mult(deltatime));
@@ -408,7 +411,7 @@ function load(){
         document.getElementById("autorelicsgain").checked = p.dev.auto[4];
     }
 
-    for(let n = 0; n < 100; n++) Tick(p.lasttick / 100);
+    for(let n = 0; n < 100; n++) (Tick(Date.now() - p.lasttick)) / 100;
     
     player.lasttick = 0;
     
