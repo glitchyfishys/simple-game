@@ -1,6 +1,6 @@
 
 var i = 0;
-var deltatime;
+var deltatime = 0;
 var last = Date.now();
 var n = new BN;
 var ticks = 0;
@@ -97,7 +97,7 @@ function Tick(tick = 0) {
     }
     br = player.break;
     if(player.money.time.gt(new BN(1,10000)) && player.money.gold.gt(1e160)) player.hasunlockedchalenges = true;
-    time(deltatime);
+    time(deltatime == 0 ? tick : deltatime);
     if(ups[59].brought) player.softcapeffectdiv *= (deltatime*3) + 1;
     if(ups[36].brought || document.getElementById("autogoldgain").checked) player.money.gold.add(ups[8].effectordefault(0).mult(deltatime));
     if(document.getElementById("autoIPgain").checked) player.money.infinitypoints.add(ups[19].effectordefault(0).mult(deltatime));
