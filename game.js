@@ -76,7 +76,7 @@ function start() {
     updateUI();
     Tick();
     
-    setTimeout(() => alert("hi"), 5)
+    if(localStorage.player == undefined)setTimeout(() => alert("hi"), 5);
     document.getElementById("main").style.display = "block";
     document.getElementById("tabholder").style.display = "block";
 } 
