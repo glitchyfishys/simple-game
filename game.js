@@ -133,7 +133,8 @@ function updateUI(){
     }
 
     if(ticks % 5 == 0){
-        document.getElementById("challengeunlock").innerHTML = nextchallenge();
+        document.getElementById("challengeunlock").innerHTML = nextchallenge() +
+            "<br> <button style='width: 150px; height: 20px; border-color: red;' onclick='leavechallenge()'>leave challenge</button>";
 
         if(progress() > 0) document.getElementById("sgoldifiy").classList.remove("hidden");
         else document.getElementById("sgoldifiy").classList.add("hidden");
@@ -434,6 +435,18 @@ function upgradebits(up, key){
         if(x.brought && x.ugkey == key) bits |= (1 << x.bitid);
     } )
     player.upgrades[key] = bits;
+}
+
+function leavechallenge() {
+    if(player.challenge.challengein == 666){
+        eternity()
+        notify("left dilation", 3, "#00ff00");
+        player.challenge.challengein = -1;        
+    }
+    else if(challenges[player.challenge.challengein].challengetype == "infinity") notify("left " + challenges[player.challenge.challengein].name, 3, "#FFaa00");
+    else notify("left " + challenges[player.challenge.challengein].name, 3, "#aa00aa");
+    infinity();
+    player.challenge.challengein = -1;
 }
 
 function event(){
