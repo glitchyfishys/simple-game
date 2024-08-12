@@ -282,7 +282,7 @@ function ResetBonus(){
     let ex = BN.min(player.reset.goldify, cap);
     ex = ex.mult(BN.min(player.reset.infinites, cap));
     ex = ex.mult(BN.min(player.reset.eternites, cap));
-    return ex.mult(BN.min(player.reset.armageddons, cap));
+    return BN.max(ex.mult(BN.min(player.reset.armageddons, cap)),1);
 }
 
 
