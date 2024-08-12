@@ -377,7 +377,7 @@ const upgrades = [
         cost: new BN(5,5),
         currencykey: "infinitypoints",
         effect: () => BN.log(player.money.infinitypoints,1.5).root(1.5),
-        softcap: new BN(1,5),
+        softcap: new BN(2,4),
         cap: new BN(1,1000),
         reqire: () => progress() > 2,
     },
