@@ -274,8 +274,17 @@ function timemults(){
     mult = mult.mult(goldeffect());
     mult = goldenslidereffects(mult, "time")
     mult = mult.pow(challengeeffect("time"))
-    return challengemult(mult, "time");
+    return challengemult(mult, "time").mult(ResetBonus());
 }
+
+function ResetBonus(){
+    const cap = 5;
+    let ex = BN.min(player.reset.goldify, cap);
+    ex = ex.mult(BN.min(player.reset.infinites, cap));
+    ex = ex.mult(BN.min(player.reset.eternites, cap));
+    return ex.mult(BN.min(player.reset.armageddons, cap));
+}
+
 
 function goldeffect(){
     return BN.pow(player.money.gold,1.2).add(1);
