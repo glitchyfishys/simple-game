@@ -374,7 +374,7 @@ const upgrades = [
         for: "IP",
         name: "infinity-m",
         decription: "IP mult by IP",
-        cost: new BN(5,5),
+        cost: new BN(1,5),
         currencykey: "infinitypoints",
         effect: () => BN.log(player.money.infinitypoints,1.5).root(1.5),
         softcap: new BN(1,5),
