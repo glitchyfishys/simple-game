@@ -279,10 +279,10 @@ function timemults(){
 
 function ResetBonus(){
     const cap = 5;
-    let ex = BN.min(player.reset.goldify, cap);
-    ex = ex.mult(BN.min(player.reset.infinites, cap));
-    ex = ex.mult(BN.min(player.reset.eternites, cap));
-    return BN.max(ex.mult(BN.min(player.reset.armageddons, cap)),1);
+    let ex = BN.max(BN.min(player.reset.goldify + 1, cap),1);
+    ex = ex.mult(BN.max(BN.min(player.reset.infinites + 1, cap),1));
+    ex = ex.mult(BN.max(BN.min(player.reset.eternites + 1, cap),1));
+    return ex.mult(BN.max(BN.min(player.reset.armageddons + 1, cap),1));
 }
 
 
