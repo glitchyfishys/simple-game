@@ -438,6 +438,7 @@ function upgradebits(up, key){
 }
 
 function leavechallenge() {
+    if(player.challenge.challengein == -1) return;
     if(player.challenge.challengein == 666){
         eternity()
         notify("left dilation", 3, "#00ff00");
