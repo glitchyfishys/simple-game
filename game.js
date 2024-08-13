@@ -114,12 +114,12 @@ function updateUI(){
     if(ticks % 2 == 0) {
         ups.forEach(x => x.tick());
         let text = ""
-        text= "you have " + player.money.time.toString() + " time : and are geting " + timemults().toString() + "/s <br>";
-        text += progress() > 0 ?  "you have " + player.money.gold.toString() + " gold, effect: " + goldeffect().toString() + "<br>" : "<br>";
-        text += progress() > 1 ? "you have " + player.money.infinitypoints.toString() + " IP <br>" : "<br>";
-        text += progress() > 3 ? "you have " + player.money.eternitypoints.toString() + " EP <br>" : "<br>";
-        text += progress() > 4 ? "you have " + player.money.dilatedtime.toString() + " DT <br>" : "<br>";
-        text += progress() > 5 ? "you have " + player.money.relics.toString() + " relics <br>" : "<br>";
+        text= `you have  <span style="color: auqa">${player.money.time.toString()}</span> time : and are geting ${timemults().toString()} /s <br>`;
+        text += progress() > 0 ? `you have <span style="color: gold">${player.money.gold.toString()}</span> gold, effect: ${goldeffect().toString()} <br>` : "<br>";
+        text += progress() > 1 ? `you have <span style="color: orange">${player.money.infinitypoints.toString()}</span> IP <br>` : "<br>";
+        text += progress() > 3 ? `you have <span style="color: #cc00ff">${player.money.eternitypoints.toString()}</span> EP <br>` : "<br>";
+        text += progress() > 4 ? `you have <span style="color: lime">${player.money.dilatedtime.toString()}</span> DT <br>` : "<br>";
+        text += progress() > 5 ? `you have <span style="color: red">${player.money.relics.toString()}</span> relics <br>` : "<br>";
         if(player.challenge.challengein != -1){
             text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " ";
             text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
