@@ -166,7 +166,7 @@ class goldenslider {
     }
     get string(){
         let string = this.text;
-        string += " min: " + this.minvalue + " max: " + this.maxvalue + " value: " + this.value;
+        string += `min: ${this.minvalue-1}  max: ${this.maxvalue-1}  value: ${this.value-1}`;
         string += "<br/> "
         string += " effect: " + this.effect(this.currentvalue).toFixed(2).toString();
         if(this.currentvalue != this.value) string += " after goldify: " + this.effect(this.value).toFixed(2).toString();
