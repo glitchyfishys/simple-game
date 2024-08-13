@@ -408,7 +408,7 @@ const upgrades = [
         currencykey: "infinitypoints",
         effect: () => BN.div(player.money.infinitypoints, new BN(1,1000)).log(10).mult(EPgain()),
         cap: new BN(1,1e308),
-        reqire: () => progress() > 3 || player.money.infinitypoints.gt(new BN(1,1000)),
+        reqire: () => progress() > 3 || challenges[6].competed,
         reset: () => eternity(),
     },
     {
