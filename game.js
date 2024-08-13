@@ -114,7 +114,7 @@ function updateUI(){
     if(ticks % 2 == 0) {
         ups.forEach(x => x.tick());
         let text = ""
-        text= `you have  <span style="color: auqa">${player.money.time.toString()}</span> time : and are geting ${timemults().toString()} /s <br>`;
+        text= `you have <span style="color: cyan">${player.money.time.toString()}</span> time : and are geting ${timemults().toString()} /s <br>`;
         text += progress() > 0 ? `you have <span style="color: gold">${player.money.gold.toString()}</span> gold, effect: ${goldeffect().toString()} <br>` : "<br>";
         text += progress() > 1 ? `you have <span style="color: orange">${player.money.infinitypoints.toString()}</span> IP <br>` : "<br>";
         text += progress() > 3 ? `you have <span style="color: #cc00ff">${player.money.eternitypoints.toString()}</span> EP <br>` : "<br>";
