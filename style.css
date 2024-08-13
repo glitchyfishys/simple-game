@@ -12,12 +12,12 @@ text{
 
 .unbuyable{
     border-color: red;
-	background-color: darkred;
+    background-color: darkred;
 }
 
 .brought{
     border-color: lime;
-	background-color: green;
+    background-color: green;
 }
 
 .tab{
@@ -27,7 +27,7 @@ text{
 
 .buyable{
     border-color: yellow;
-	background-color: darkgoldenrod;
+    background-color: darkgoldenrod;
 }
 
 .upgrade{
@@ -81,7 +81,6 @@ span{
 
 .reset{
     animation: resetpulse linear 1s infinite;
-	background: darkorange;
 }
 
 .tabholder{
@@ -200,12 +199,15 @@ span{
 @keyframes resetpulse{
     0%{
         border-color: yellow;
+	background: darkgoldenrod;
     }
     50%{
         border-color: red;
+	background: darkred;
     }
     100%{
         border-color: yellow;
+	background: darkgoldenrod;
     }
 }
 
