@@ -81,7 +81,7 @@ span{
 
 .reset{
     animation: resetpulse linear 1s infinite;
-	background: firebrick;
+	background: darkorange;
 }
 
 .tabholder{
