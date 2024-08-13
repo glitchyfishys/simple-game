@@ -121,7 +121,7 @@ function updateUI(){
         text += progress() > 4 ? "you have " + player.money.dilatedtime.toString() + " DT <br>" : "<br>";
         text += progress() > 5 ? "you have " + player.money.relics.toString() + " relics <br>" : "<br>";
         if(player.challenge.challengein != -1){
-            text += "you are currently in challenge " + challenges[player.challenge.challengein].name;
+            text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " ";
             text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
                 : challenges[player.challenge.challengein].goaldiscription;
         }
