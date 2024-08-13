@@ -12,10 +12,12 @@ text{
 
 .unbuyable{
     border-color: red;
+	background-color: darkred;
 }
 
 .brought{
     border-color: lime;
+	background-color: green;
 }
 
 .tab{
@@ -25,6 +27,7 @@ text{
 
 .buyable{
     border-color: yellow;
+	background-color: darkgoldenrod;
 }
 
 .upgrade{
@@ -78,6 +81,7 @@ span{
 
 .reset{
     animation: resetpulse linear 1s infinite;
+	background: firebrick;
 }
 
 .tabholder{
