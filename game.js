@@ -114,12 +114,18 @@ function updateUI(){
     if(ticks % 2 == 0) {
         ups.forEach(x => x.tick());
         let text = ""
-        text= "you have " + player.money.time.toString() + " time : and are geting " + timemults().toString() + "/s <br />";
-        text += progress() > 0 ?  "you have " + player.money.gold.toString() + " gold, effect: " + goldeffect().toString() + "<br />" : "<br>";
-        text += progress() > 1 ? "you have " + player.money.infinitypoints.toString() + " IP <br />" : "<br>";
-        text += progress() > 3 ? "you have " + player.money.eternitypoints.toString() + " EP <br />" : "<br>";
-        text += progress() > 4 ? "you have " + player.money.dilatedtime.toString() + " DT <br />" : "<br>";
-        text += progress() > 5 ? "you have " + player.money.relics.toString() + " relics <br />" : "<br>";
+        text= "you have " + player.money.time.toString() + " time : and are geting " + timemults().toString() + "/s <br>";
+        text += progress() > 0 ?  "you have " + player.money.gold.toString() + " gold, effect: " + goldeffect().toString() + "<br>" : "<br>";
+        text += progress() > 1 ? "you have " + player.money.infinitypoints.toString() + " IP <br>" : "<br>";
+        text += progress() > 3 ? "you have " + player.money.eternitypoints.toString() + " EP <br>" : "<br>";
+        text += progress() > 4 ? "you have " + player.money.dilatedtime.toString() + " DT <br>" : "<br>";
+        text += progress() > 5 ? "you have " + player.money.relics.toString() + " relics <br>" : "<br>";
+        if(player.challenge.challengein != -1){
+            text += "you are currently in challenge " + challenges[player.challenge.challengein].name;
+            text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
+                : challenges[player.challenge.challengein].goaldiscription;
+        }
+        else text += "<br>";
         if(ups[59].brought) text += "<br>soft cap is lowered by " + new BN(player.softcapeffectdiv).toString();
         document.getElementById("time").innerHTML = text;
     }
