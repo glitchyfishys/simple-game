@@ -80,7 +80,7 @@ span{
 }
 
 .reset{
-    animation: resetpulse linear 1s infinite;
+    animation: resetpulse linear 3s infinite;
 }
 
 .tabholder{
