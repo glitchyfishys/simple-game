@@ -77,7 +77,7 @@ function start() {
     updateUI();
     Tick();
     
-    if(localStorage.player == undefined)setTimeout(() => alert("hi"), 5);
+    if(localStorage.player == undefined) setTimeout(() => alert("hi, there was no save to load :("), 5);
     document.getElementById("main").style.display = "block";
     document.getElementById("tabholder").style.display = "block";
 } 
