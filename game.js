@@ -133,8 +133,7 @@ function updateUI(){
     }
 
     if(ticks % 5 == 0){
-        document.getElementById("challengeunlock").innerHTML = nextchallenge() +
-            "<br> <button style='width: 150px; height: 20px; border-color: red;' onclick='leavechallenge()'>leave challenge</button>";
+        document.getElementById("challengeunlock").innerHTML = nextchallenge();
 
         if(progress() > 0) document.getElementById("sgoldifiy").classList.remove("hidden");
         else document.getElementById("sgoldifiy").classList.add("hidden");
