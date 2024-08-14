@@ -70,7 +70,7 @@ function start() {
 
     setInterval(Tick, 25);
     setInterval(updateUI, 50);
-    setInterval(save, 30000);
+    setInterval(save, 60000);
 
     updateUI();
     Tick();
