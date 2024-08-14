@@ -716,7 +716,7 @@ const upgrades = [
         for: "gold",
         name: "doomed gold",
         decription: "gold * relics+1 and gold upgrades aren't reset",
-        cost: new BN(5,3),
+        cost: new BN(2,3),
         currencykey: "relics",
         effect: () => BN.add(player.money.relics,1),
         softcap: new BN(1,3),
