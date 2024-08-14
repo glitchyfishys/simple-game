@@ -1,6 +1,7 @@
 
 function goldify(){
     if(player.challenge.doomed)glitchstrikes[1].trigger();
+    sliders.forEach(x => x.updatevalue());
     player.money.gold.add(ups[8].effectordefault(1));
     player.reset.goldify++;
     player.money.time = new BN;
@@ -8,7 +9,6 @@ function goldify(){
     ups.forEach(x => {
         if(x.ugkey == "timebits" && !ups[50].brought) x.brought = false;
     });
-    sliders.forEach(x => x.updatevalue());
     if(document.getElementById("goldifiy").checked && main.getAnimations() == 0) main.animate(golden,s);
 }
 
