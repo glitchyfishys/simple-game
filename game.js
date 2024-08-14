@@ -465,85 +465,80 @@ function leavechallenge() {
     player.challenge.challengein = -1;
 }
 
-document.addEventListener("keydown", event => keydown(event));
-document.addEventListener("keyup", event => keyup(event));
 // a bad thing
 document.addEventListener('contextmenu', event => event.preventDefault());
 
-let keys = [];
-let TO = 0;
+kd.run( () => {kd.tick(); });
 
-function keydown(event){
-    if(keys.indexOf(event.key) == -1) {
-        keys.push(event.key);
-    }
-    keyevents(event);
-    TO = Date.now();
-    setTimeout( () => {if(TO - Date.now() > 150) keys = []}, 150);
-}
-
-function keyup(event){
-    const ind = keys.indexOf(event.key);
-    keys.pop(ind);
-}
-
-function keyevents(event){
-    if((event.ctrlKey || event.metaKey) && keys.includes("s")){
-        event.preventDefault();
+kd.S.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && evt.ctrlKey) {
+        evt.preventDefault();
         save();
     }
-    if(event.shiftKey && event.ctrlKey && event.key == "I"){
-        event.preventDefault();
-        notify("Hey what are you doing trying to get into console?",5);
-    }
-    if(keys.includes("m")){
+});
+  
+kd.M.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
         ups.forEach(x => {
-            if(x.currencykey == "time" && x.type != "reset") x.buy();
-        });
-    }
-    if(keys.includes("k")){
-        ups.forEach(x => {
-            if(x.currencykey == "gold" && x.type != "reset") x.buy();
-        });
-    }
-    if(keys.includes("l")){
-        ups.forEach(x => {
-            if(x.currencykey == "infinitypoints" && x.type != "reset") x.buy();
-        });
-    }
-    if(keys.includes("l")){
-        ups.forEach(x => {
-            if(x.currencykey == "eternitypoints" && x.type != "reset") x.buy();
-        });
-    }
-    if(keys.includes("g")){
-        ups[8].buy();
-    }
-    if(keys.includes("i")){
-        ups[19].buy();
-    }
-    if(keys.includes("e")){
-        ups[29].buy();
-    }
+        if(x.currencykey == "time" && x.type != "reset") x.buy();
+    });}
+});
 
-    if(keys.includes("d") && (progress() > 4 && player.money.eternitypoints.gte(new BN(1,308)))){
-        startdilation();
-    }
+kd.K.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        ups.forEach(x => {
+        if(x.currencykey == "gold" && x.type != "reset") x.buy();
+        });}
+});
 
-    if(keys.includes("a")){
+kd.L.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        ups.forEach(x => {
+        if(x.currencykey == "infinitypoints" && x.type != "reset") x.buy();
+        });}
+});
+
+kd.G.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[8].buy();
+});
+
+kd.I.down( evt => {
+        if(!evt.altKey && evt.shiftKey && evt.ctrlKey){
+            event.preventDefault();
+            notify("Hey what are you doing trying to get into console?",5);
+        }
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[19].buy();
+});
+
+
+kd.E.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[29].buy();
+});
+
+kd.D.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        if(progress() > 4 && player.money.eternitypoints.gte(new BN(1.79,308))) startdilation();
+    }
+    
+});
+
+kd.A.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
         if(player.reset.armageddons > 0) ups[49].buy();
     }
+});
 
-    if(event.key == "ArrowUp"){
-        event.preventDefault();
-        changetab(player.tablefton - 1, true);
-    }
 
-    if(event.key == "ArrowDown"){
-        event.preventDefault();
-        changetab(player.tablefton + 1,false);
-    }
-    if(keys.includes("c") && player.challenge.challengein != -1){
+kd.UP.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) changetab(player.tablefton - 1, true);
+});
+
+kd.DOWN.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) changetab(player.tablefton + 1,false);
+});
+
+kd.C.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && evt.ctrlKey) {
         if(player.challenge.challengein == 666){
             eternity()
             notify("left dilation", 3, "#00ff00");
@@ -555,8 +550,10 @@ function keyevents(event){
         infinity();
         player.challenge.challengein = -1;
     }
+});
 
-    if(event.key == "v"){
+kd.V.press( evt => {
+    if(!evt.altKey && !evt.shiftKey && evt.ctrlKey) {
         if(document.getElementById("main").classList.contains("invert")) {
             document.getElementById("main").classList.remove("invert");
             document.getElementById("tabholder").classList.remove("invert");
@@ -568,4 +565,4 @@ function keyevents(event){
             document.body.style.backgroundColor = "white";
         }
     }
-}
+});
