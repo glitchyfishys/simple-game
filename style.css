@@ -21,8 +21,8 @@ text{
 }
 
 .tab{
-    width: 100px;
-    height: 25px;
+    width: 125px;
+    height: 35px;
 }
 
 .buyable{
@@ -49,8 +49,8 @@ text{
 body{
     background-color: black;
     overflow-x: hidden;
-    width: calc(100% - 105px);
-    margin-left: 105px;
+    width: calc(100% - 135px);
+    margin-left: 135px;
 }
 
 .notifyoverlay {
