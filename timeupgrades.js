@@ -575,7 +575,7 @@ const upgrades = [
         for: "time",
         name: "dilation-k",
         decription: "dilation nerfs are weaker",
-        cost: new BN(1,6),
+        cost: new BN(1,5),
         currencykey: "dilatedtime",
         effect: () => true,
         reqire: () => progress() > 4,
