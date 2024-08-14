@@ -71,7 +71,6 @@ function start() {
 
     setInterval(Tick, 25);
     setInterval(updateUI, 50);
-    setInterval(autotick, 50);
     setInterval(save, 30000);
 
     updateUI();
@@ -81,10 +80,6 @@ function start() {
     document.getElementById("main").style.display = "block";
     document.getElementById("tabholder").style.display = "block";
 } 
-
-function autotick(){
-    auto.forEach(x => x.tick())
-}
 
 function Tick(tick = 0) {
     if(player.challenge.doomed && ups[59].brought) glitchstrikes[6].trigger();
@@ -101,7 +96,8 @@ function Tick(tick = 0) {
     br = player.break;
     if(player.money.time.gt(new BN(1,10000)) && player.money.gold.gt(1e160)) player.hasunlockedchalenges = true;
     time(deltatime);
-    if(ups[59].brought) player.softcapeffectdiv *= (deltatime*3) + 1;
+    auto.forEach(x => x.tick());
+    if(ups[59].brought) player.softcapeffectdiv *= (deltatime*5) + 1;
     if(ups[36].brought || document.getElementById("autogoldgain").checked) player.money.gold.add(ups[8].effectordefault(0).mult(deltatime));
     if(document.getElementById("autoIPgain").checked) player.money.infinitypoints.add(ups[19].effectordefault(0).mult(deltatime));
     if(document.getElementById("autoEPgain").checked) player.money.eternitypoints.add(ups[29].effectordefault(0).mult(deltatime));
@@ -176,7 +172,7 @@ function updateUI(){
 function time(sec){
     let m = timemults();
     m = m.mult(sec);
-    player.money.time.add(m)
+    player.money.time.add(m);
 }
 
 function challengeeffect(type = "time"){
