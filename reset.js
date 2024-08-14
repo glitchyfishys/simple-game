@@ -249,7 +249,6 @@ function startdilation(){
     if(document.getElementById("dilation").checked && main.getAnimations() == 0) main.animate(dilate,ss);
     eternity();
     player.challenge.challengein = 666;
-    notify("started dilation",3, "#00ff00")
 }
 
 function armageddon(){
