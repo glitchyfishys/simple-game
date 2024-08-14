@@ -566,7 +566,7 @@ kd.C.press( evt => {
 });
 
 kd.V.press( evt => {
-    if(!evt.altKey && !evt.shiftKey && evt.!ctrlKey) {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
         if(document.getElementById("main").classList.contains("invert")) {
             document.getElementById("main").classList.remove("invert");
             document.getElementById("tabholder").classList.remove("invert");
