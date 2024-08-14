@@ -119,7 +119,7 @@ function updateUI(){
                 text += "you are currently in dilation, reach 1e1000 IP to gain dilated time";
             }
             else{
-                text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " and needing to";
+                text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " and needing to ";
                 text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
                     : challenges[player.challenge.challengein].goaldiscription;
                 text += " to finish the challenge";
