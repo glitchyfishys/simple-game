@@ -199,7 +199,7 @@ const upgrades = [
         for: "gold",
         name: "gold-av",
         decription: "x12 gold",
-        cost: new BN(1,6),
+        cost: new BN(5,5),
         currencykey: "gold",
         effect: () => new BN(1.2,1),
         reqire: () => progress() > 0,
