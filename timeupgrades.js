@@ -653,7 +653,7 @@ const upgrades = [
         for: "DT",
         name: "z-dilation",
         decription: "dilation nerfs are much worse but DT ^15",
-        cost: new BN(1,150),
+        cost: new BN(1,145),
         currencykey: "dilatedtime",
         effect: () => new BN(1.5,1),
         reqire: () => progress() > 4,
