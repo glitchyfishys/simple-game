@@ -459,7 +459,7 @@ function leavechallenge() {
 function event(){
     document.addEventListener("keydown", event => keyevents(event));
     // a bad thing
-    //document.addEventListener('contextmenu', event => event.preventDefault());
+    document.addEventListener('contextmenu', event => event.preventDefault());
 }
 
 function keyevents(event){
@@ -474,6 +474,26 @@ function keyevents(event){
     if(event.key == "m"){
         ups.forEach(x => {
             if(x.currencykey == "time" && x.type != "reset") x.buy();
+        });
+    }
+    if(event.key == "k"){
+        ups.forEach(x => {
+            if(x.currencykey == "gold" && x.type != "reset") x.buy();
+        });
+    }
+    if(event.key == "l"){
+        ups.forEach(x => {
+            if(x.currencykey == "infinitypoints" && x.type != "reset") x.buy();
+        });
+    }
+    if(event.key == "o"){
+        ups.forEach(x => {
+            if(x.currencykey == "eternitypoints" && x.type != "reset") x.buy();
+        });
+    }
+    if(event.key == "p"){
+        ups.forEach(x => {
+            if(x.currencykey == "dilatedtime" && x.type != "reset") x.buy();
         });
     }
     if(event.key == "g"){
