@@ -57,7 +57,6 @@ var player = {
 
 function start() {
     console.warn("why? how did you get here?");
-    event();
     autosetup();
     upgrades.forEach(x => ups[x.inid] = new upgrade(x));
     ups.forEach(x => x.element = makenewelement("upgrades", x));
@@ -76,7 +75,6 @@ function start() {
     updateUI();
     Tick();
     
-    if(localStorage.player == undefined) setTimeout(() => alert("hi, there was no save to load :("), 5);
     document.getElementById("main").style.display = "block";
     document.getElementById("tabholder").style.display = "block";
 } 
@@ -467,14 +465,30 @@ function leavechallenge() {
     player.challenge.challengein = -1;
 }
 
-function event(){
-    document.addEventListener("keydown", event => keyevents(event));
-    // a bad thing
-    document.addEventListener('contextmenu', event => event.preventDefault());
+document.addEventListener("keydown", event => keydown(event));
+document.addEventListener("keyup", event => keyup(event));
+// a bad thing
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+let keys = [];
+let TO = 0;
+
+function keydown(event){
+    if(keys.indexOf(event.key) == -1) {
+        keys.push(event.key);
+    }
+    keyevents(event);
+    TO = Date.now();
+    setTimeout( () => {if(TO - Date.now() > 150) keys = []}, 150);
+}
+
+function keyup(event){
+    const ind = keys.indexOf(event.key);
+    keys.pop(ind);
 }
 
 function keyevents(event){
-    if((event.ctrlKey || event.metaKey) && event.key == "s"){
+    if((event.ctrlKey || event.metaKey) && keys.includes("s")){
         event.preventDefault();
         save();
     }
@@ -482,41 +496,41 @@ function keyevents(event){
         event.preventDefault();
         notify("Hey what are you doing trying to get into console?",5);
     }
-    if(event.key == "m"){
+    if(keys.includes("m")){
         ups.forEach(x => {
             if(x.currencykey == "time" && x.type != "reset") x.buy();
         });
     }
-    if(event.key == "k"){
+    if(keys.includes("k")){
         ups.forEach(x => {
             if(x.currencykey == "gold" && x.type != "reset") x.buy();
         });
     }
-    if(event.key == "l"){
+    if(keys.includes("l")){
         ups.forEach(x => {
             if(x.currencykey == "infinitypoints" && x.type != "reset") x.buy();
         });
     }
-    if(event.key == "o"){
+    if(keys.includes("l")){
         ups.forEach(x => {
             if(x.currencykey == "eternitypoints" && x.type != "reset") x.buy();
         });
     }
-    if(event.key == "g"){
+    if(keys.includes("g")){
         ups[8].buy();
     }
-    if(event.key == "i"){
+    if(keys.includes("i")){
         ups[19].buy();
     }
-    if(event.key == "e"){
+    if(keys.includes("e")){
         ups[29].buy();
     }
 
-    if(event.key == "d" && (progress() > 4 && player.money.eternitypoints.gte(new BN(1,308)))){
+    if(keys.includes("d") && (progress() > 4 && player.money.eternitypoints.gte(new BN(1,308)))){
         startdilation();
     }
 
-    if(event.key == "a"){
+    if(keys.includes("a")){
         if(player.reset.armageddons > 0) ups[49].buy();
     }
 
@@ -529,7 +543,7 @@ function keyevents(event){
         event.preventDefault();
         changetab(player.tablefton + 1,false);
     }
-    if(event.key == "c" && player.challenge.challengein != -1){
+    if(keys.includes("c") && player.challenge.challengein != -1){
         if(player.challenge.challengein == 666){
             eternity()
             notify("left dilation", 3, "#00ff00");
