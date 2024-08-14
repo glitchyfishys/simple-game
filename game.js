@@ -137,6 +137,17 @@ function updateUI(){
     if(ticks % 5 == 0){
         document.getElementById("challengeunlock").innerHTML = nextchallenge();
 
+        document.getElementById("settingstext").innerHTML = `hold "M" to buy time upgrades<br>
+        ${ (progress() > 0) ? 'hold "K" to buy gold upgrades<br>' :""}
+        ${ (progress() > 1) ? 'hold "L" to buy infinity upgrades<br>' :""}
+        ${ (progress() > 3) ? 'hold "O" to buy eternity upgrades<br>' :""}
+                press "C" to leave challenges<br>
+                hotkeys for resets are their first letter<br>
+                you can save with ctrl + s<br>
+                you can change tabs with arrow keys<br>
+                pressing V inverts colors`;
+
+        
         if(progress() > 0) document.getElementById("sgoldifiy").classList.remove("hidden");
         else document.getElementById("sgoldifiy").classList.add("hidden");
 
@@ -489,11 +500,6 @@ function keyevents(event){
     if(event.key == "o"){
         ups.forEach(x => {
             if(x.currencykey == "eternitypoints" && x.type != "reset") x.buy();
-        });
-    }
-    if(event.key == "p"){
-        ups.forEach(x => {
-            if(x.currencykey == "dilatedtime" && x.type != "reset") x.buy();
         });
     }
     if(event.key == "g"){
