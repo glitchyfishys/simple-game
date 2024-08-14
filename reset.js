@@ -1,7 +1,7 @@
 
 function goldify(){
-    if(player.challenge.doomed)glitchstrikes[1].trigger();
     sliders.forEach(x => x.updatevalue());
+    if(player.challenge.doomed)glitchstrikes[1].trigger();
     player.money.gold.add(ups[8].effectordefault(1));
     player.reset.goldify++;
     player.money.time = new BN;
