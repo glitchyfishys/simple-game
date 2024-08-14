@@ -131,6 +131,8 @@ span{
     height: 100px;
     margin-left: 10px;
     margin-top: 10px;
+    display: inline-grid;
+    width: 45%;
 }
 
 .icdone{
