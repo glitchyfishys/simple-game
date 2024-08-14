@@ -253,7 +253,6 @@ function startdilation(){
 
 function armageddon(){
     glitchstrikes[0].trigger();
-    notify("armageddoned for " + ups[49].effectordefault(1) + " relics",3 , "#FF0000")
     player.money.relics.add(ups[49].effectordefault(1));
 
     player.challenge.doomed = true;
