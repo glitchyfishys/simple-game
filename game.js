@@ -504,6 +504,13 @@ kd.L.down( evt => {
         });}
 });
 
+kd.O.down( evt => {
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        ups.forEach(x => {
+        if(x.currencykey == "eternitypoints" && x.type != "reset") x.buy();
+        });}
+});
+
 kd.G.down( evt => {
     if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[8].buy();
 });
