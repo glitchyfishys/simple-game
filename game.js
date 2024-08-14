@@ -253,15 +253,16 @@ function challengeeffect(type = "time"){
 function makenewelement(parent = "", data = {name:"",funct: () => 0,cost: 0,currencykey: "time"}){
     const para = document.createElement("button");
 
+    if(data.type == "reset") {
+        element.appendChild(document.createElement("br"));
+        element.appendChild(document.createElement("br"));
+    }
+    
     const element = document.getElementById(parent);
     let child = element.appendChild(para);
     child.onclick = data.funct;
     child.classList.add("upgrade");
     span(child,"hi");
-    if(data.type == "reset") {
-        element.appendChild(document.createElement("br"));
-        element.appendChild(document.createElement("br"));
-    }
     return child;
 }
 
