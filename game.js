@@ -115,9 +115,15 @@ function updateUI(){
         text += progress() > 4 ? `you have <span style="color: lime">${player.money.dilatedtime.toString()}</span> DT <br>` : "<br>";
         text += progress() > 5 ? `you have <span style="color: red">${player.money.relics.toString()}</span> relics <br>` : "<br>";
         if(player.challenge.challengein != -1){
-            text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " ";
-            text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
-                : challenges[player.challenge.challengein].goaldiscription;
+            if(player.challenge.challengein = 666){
+                text += "you are currently in dilation, reach 1e1000 IP to gain dilated time";
+            }
+            else{
+                text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " and needing to";
+                text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
+                    : challenges[player.challenge.challengein].goaldiscription;
+                text += " to finish the challenge";
+            }
         }
         else text += "<br>";
         if(ups[59].brought) text += "<br>soft cap is lowered by " + new BN(player.softcapeffectdiv).toString();
