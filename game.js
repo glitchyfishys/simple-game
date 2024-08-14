@@ -250,7 +250,7 @@ function challengeeffect(type = "time"){
     return effect;
 }
 
-function makenewelement(parent = "", data = {name:"",funct: () => 0,cost: 0,currencykey: "time", br: true}){
+function makenewelement(parent = "", data = {name:"",funct: () => 0,cost: 0,currencykey: "time"}){
     const para = document.createElement("button");
 
     const element = document.getElementById(parent);
@@ -258,7 +258,10 @@ function makenewelement(parent = "", data = {name:"",funct: () => 0,cost: 0,curr
     child.onclick = data.funct;
     child.classList.add("upgrade");
     span(child,"hi");
-    if(data.br) element.appendChild(document.createElement("br"));
+    if(data.type == "reset") {
+        element.appendChild(document.createElement("br"));
+        element.appendChild(document.createElement("br"));
+    }
     return child;
 }
 
