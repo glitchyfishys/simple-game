@@ -314,8 +314,9 @@ var challenges = [];
 function nextchallenge(){
     let e = "";
     challenges.forEach(x =>{
-        if(!x.showchallenge()&& e == "") e = x.req + "<br>for challenge " + x.name;
-        if(x.id == 11 && e == "") e = "all challenges unlock";
+        if(progress() < 4 && x.id == 7 && e == "") e = "all challenges are unlocked";
+        if(!x.showchallenge() && e == "") e = x.req + "<br>for challenge " + x.name;
+        if(x.id == 11 && e == "") e = "all challenges are unlocked";
     });
     return e;
 }
