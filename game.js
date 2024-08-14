@@ -543,11 +543,17 @@ kd.A.down( evt => {
 
 
 kd.UP.press( evt => {
-    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) changetab(player.tablefton - 1, true);
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        changetab(player.tablefton - 1, true);
+        event.preventDefault();
+    }
 });
 
 kd.DOWN.press( evt => {
-    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) changetab(player.tablefton + 1,false);
+    if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) {
+        changetab(player.tablefton + 1,false);
+        event.preventDefault();
+    }
 });
 
 kd.C.press( evt => {
