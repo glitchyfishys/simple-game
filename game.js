@@ -517,7 +517,7 @@ kd.G.down( evt => {
 
 kd.I.down( evt => {
         if(!evt.altKey && evt.shiftKey && evt.ctrlKey){
-            event.preventDefault();
+            evt.preventDefault();
             notify("Hey what are you doing trying to get into console?",5);
         }
     if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[19].buy();
