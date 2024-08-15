@@ -652,10 +652,10 @@ const upgrades = [
         type: "pow",
         for: "DT",
         name: "z-dilation",
-        decription: "dilation nerfs are much worse but DT ^15",
+        decription: "dilation nerfs are much worse but DT ^15, only while DT is over 1e145",
         cost: new BN(1,145),
         currencykey: "dilatedtime",
-        effect: () => new BN(1.5,1),
+        effect: () => player.money.dilatedtime.gte(1e145) ? new BN(1.5,1) : new BN(1),
         reqire: () => progress() > 4,
     },
     {
