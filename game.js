@@ -116,13 +116,13 @@ function updateUI(){
         text += progress() > 5 ? `you have <span style="color: red">${player.money.relics.toString()}</span> relics <br>` : "<br>";
         if(player.challenge.challengein != -1){
             if(player.challenge.challengein == 666){
-                text += "you are currently in dilation, reach 1e1000 IP to gain dilated time";
+                text += "you are currently in dilation, reach 1e1000 IP to gain dilated time<br>";
             }
             else{
                 text += "you are currently in challenge " + challenges[player.challenge.challengein].name + " and needing to ";
                 text += typeof challenges[player.challenge.challengein].goaldiscription == "function" ? challenges[player.challenge.challengein].goaldiscription()
                     : challenges[player.challenge.challengein].goaldiscription;
-                text += " to finish the challenge";
+                text += " to finish the challenge<br>";
             }
         }
         else text += "<br>";
