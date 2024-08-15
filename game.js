@@ -239,7 +239,7 @@ function challengeeffect(type = "time"){
     }
 
     if(id == 666){
-        if(ups[48].brought && !ups[59].brought){
+        if(ups[48].brought && !ups[59].brought && player.money.dilatedtime.gte(1e145)){
             if(type == "time") effect = 1e-25;
             if(type == "gold") effect = 8e-4;
             if(type == "IP") effect = 1.5e-3;
