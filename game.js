@@ -242,7 +242,7 @@ function challengeeffect(type = "time"){
         if(ups[48].brought && !ups[59].brought){
             if(type == "time") effect = 1e-25;
             if(type == "gold") effect = 8e-4;
-            if(type == "IP") effect = 1e-3;
+            if(type == "IP") effect = 1.5e-3;
         }
         else if(ups[42].brought){
             if(type == "time") effect = 0.6;
