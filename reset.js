@@ -22,7 +22,7 @@ function goldgain(mult = new BN(1,0)){
     upgrades.forEach(x => {
         if(x.type == "pow" && x.for.includes("gold")) mult = mult.pow(ups[x.inid].effectordefault(1, "gold"));
     })
-    sliders.forEach(x => x.updatevalue());
+
     mult = goldenslidereffects(mult, "gold");
     mult = challengemult(mult, "gold").pow(challengeeffect("gold"));
 
