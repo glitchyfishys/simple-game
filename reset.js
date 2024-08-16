@@ -328,3 +328,60 @@ const endani = [
 const endss = {
     duration: 15000,
 }
+
+function absolutism(){
+
+    player.money.realityshards.add(ups[60].effectordefault(1));
+
+    player.challenge.doomed = false;
+    player.reset.absolutisms++;
+    player.challenge.challengein = -1;
+
+    player.reset.goldify = 0;
+    player.reset.infinites = 0;
+    player.reset.eternites = 0;
+    player.reset.armageddons = 0;
+    
+    player.money.time = new BN;
+    player.money.gold = new BN;
+    player.money.infinitypoints = new BN;
+    player.money.eternitypoints = new BN;
+    player.money.dilatedtime = new BN;
+    player.money.relics = new BN;
+    
+    player.upgrades.timebits = 0;
+    player.upgrades.goldbits = 0;
+    player.upgrades.infinitybits = 0;
+    player.upgrades.eternitybits = 0;
+
+    ups.forEach(x => {
+        if(x.ugkey == "timebits") {x.brought = false;};
+        if(x.ugkey == "goldbits") {x.brought = false;};
+        if(x.ugkey == "infinitybits") {x.brought = false;};
+        if(x.ugkey == "eternitybits") {x.brought = false;};
+    });
+
+    sliders.forEach(x => {
+        x.currentvalue = 1;
+        document.getElementById(x.eleid).value = 1;
+    });
+
+    if(player.reset.absolutisms == 1){
+        document.getElementById("autotime").checked = false;
+        document.getElementById("autogold").checked = false;
+        document.getElementById("autoinfinity").checked = false;
+    }
+
+    if (!ups[35].brought) challenges.forEach(x => {
+        if(x.id > 12) return;
+        x.ele.classList.add("hidden");
+        x.competed = false;
+        player.challenge.ICcompeted = 0;
+        player.challenge.ECcompeted = 0;
+        player.challenge.ICunlocks = 0;
+        player.challenge.ECunlocks = 0;
+        player.challenge.hasunlockedchallenges = false;
+    });
+
+    if(document.getElementById("absolutism").checked && main.getAnimations() == 0) main.animate(arm,s);
+}
