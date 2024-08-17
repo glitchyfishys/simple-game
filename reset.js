@@ -1,5 +1,6 @@
 
 function goldify(){
+    sliders.forEach(x => x.updateslider());
     sliders.forEach(x => x.updatevalue());
     if(player.challenge.doomed)glitchstrikes[1].trigger();
     player.money.gold.add(ups[8].effectordefault(1));
