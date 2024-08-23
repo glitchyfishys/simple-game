@@ -109,6 +109,7 @@ function updateUI(){
 
     if(mobile){
         document.getElementById("tabholder").style.width = "490px";
+        document.getElementById("tabholder").style.height = "105px";
         document.getElementById("tabholder").style.backgroundColor = "black";
         document.getElementById("tabholder").style.position = "fixed";
         document.getElementById("notify").style.top = "75px";
@@ -120,12 +121,11 @@ function updateUI(){
         
         [].slice.call(document.getElementById("challenge").children).forEach(x => x.style.width = "280px");
         
-
         document.body.style.width = "100%"
         document.body.style.minWidth = "490px"
         document.body.style.maxWidth = "490px"
         document.body.style.fontSize = "14px"
-        document.body.style.zoom = "2"
+        document.body.style.zoom = "1.5"
         document.body.style.marginLeft = "0px"
         document.body.style.marginTop = "125px"
     }
