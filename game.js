@@ -105,6 +105,31 @@ function Tick(tick = 0) {
 }
 
 function updateUI(){
+    const mobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    if(mobile){
+        document.getElementById("tabholder").style.width = "490px";
+        document.getElementById("tabholder").style.backgroundColor = "black";
+        document.getElementById("tabholder").style.position = "fixed";
+        document.getElementById("notify").style.top = "75px";
+        document.getElementById("time").style.textAlign = "left";
+        document.getElementById("time").style.position = "sticky";
+        document.getElementById("time").style.top = "105px";
+        document.getElementById("time").style.backgroundColor = "black";
+        document.getElementById("challenge").style.width = "380px";
+        
+        [].slice.call(document.getElementById("challenge").children).forEach(x => x.style.width = "280px");
+        
+
+        document.body.style.width = "100%"
+        document.body.style.minWidth = "490px"
+        document.body.style.maxWidth = "490px"
+        document.body.style.fontSize = "14px"
+        document.body.style.zoom = "2"
+        document.body.style.marginLeft = "0px"
+        document.body.style.marginTop = "125px"
+    }
+
     if(ticks % 2 == 0) {
         ups.forEach(x => x.tick());
         let text = ""
@@ -141,7 +166,9 @@ function updateUI(){
     if(ticks % 5 == 0){
         document.getElementById("challengeunlock").innerHTML = nextchallenge();
 
-        document.getElementById("settingstext").innerHTML = `hold "M" to buy time upgrades<br>
+        if(!mobile){
+
+            document.getElementById("settingstext").innerHTML = `hold "M" to buy time upgrades<br>
         ${ (progress() > 0) ? 'hold "K" to buy gold upgrades<br>' :""}
         ${ (progress() > 1) ? 'hold "L" to buy infinity upgrades<br>' :""}
         ${ (progress() > 3) ? 'hold "O" to buy eternity upgrades<br>' :""}
@@ -149,8 +176,8 @@ function updateUI(){
                 hotkeys for resets are their first letter<br>
                 you can save with ctrl + s<br>
                 you can change tabs with arrow keys<br>
-                pressing V inverts colors`;
-
+                pressing V inverts colors`;        
+        }
         
         if(progress() > 0) document.getElementById("sgoldifiy").classList.remove("hidden");
         else document.getElementById("sgoldifiy").classList.add("hidden");
@@ -166,6 +193,19 @@ function updateUI(){
 
         if(progress() > 5) document.getElementById("sarmageddon").classList.remove("hidden");
         else document.getElementById("sarmageddon").classList.add("hidden");
+
+        
+        if(progress() > 0 && mobile) document.getElementById("max-time").classList.remove("hidden");
+        else document.getElementById("max-time").classList.add("hidden");
+
+        if(progress() > 1 && mobile) document.getElementById("max-gold").classList.remove("hidden");
+        else document.getElementById("max-gold").classList.add("hidden");
+
+        if(progress() > 2 && mobile) document.getElementById("max-IP").classList.remove("hidden");
+        else document.getElementById("max-IP").classList.add("hidden");
+
+        if(progress() > 3 && mobile) document.getElementById("max-EP").classList.remove("hidden");
+        else document.getElementById("max-EP").classList.add("hidden");
     }
 
     if(ticks % 2 == 0) upgradebits(ups, "timebits");
@@ -516,15 +556,13 @@ kd.G.down( evt => {
 });
 
 kd.I.down( evt => {
+        if(!evt.altKey && evt.shiftKey && evt.ctrlKey){
+            evt.preventDefault();
+            notify("Hey what are you doing trying to get into console?",5);
+        }
     if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[19].buy();
 });
 
-kd.I.press( evt => {
-    if(!evt.altKey && evt.shiftKey && evt.ctrlKey){
-        evt.preventDefault();
-        notify("Hey what are you doing trying to get into console?",5);
-    }
-});
 
 kd.E.down( evt => {
     if(!evt.altKey && !evt.shiftKey && !evt.ctrlKey) ups[29].buy();

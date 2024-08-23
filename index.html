@@ -17,32 +17,25 @@
             toggle autobuyers<br>
         </div>
         <div id="settings" class="settings">
-            <span id="settingstext">
-                hold "M" to buy time upgrades<br>
-                press "C" to leave challenges<br>
-                hotkeys for resets are their first letter<br>
-                you can save with ctrl + s<br>
-                you can change tabs with arrow keys<br>
-                pressing V inverts colors
-            </span><br><br>
-            <div id="sgoldifiy">
+            <span id="settingstext"></span><br><br>
+            <div style="display: contents;" id="sgoldifiy">
                 goldify animation
             <input type="checkbox" id="goldifiy" checked="true">
-            </div>
-            <div id="scrunch">
+            </div><br>
+            <div style="display: contents;" id="scrunch">
                 infinity animation
                 <input type="checkbox" id="crunch" checked="true">
-            </div>
-            <div id="seternity">
+            </div><br>
+            <div style="display: contents;" id="seternity">
                 eternity animation
                 <input type="checkbox" id="eternity" checked="true">
-            </div>
+            </div><br>
 
-            <div id="sdilation">
+            <div style="display: contents;" id="sdilation">
                 dilation animation
                 <input type="checkbox" id="dilation" checked="true">
-            </div>
-            <div id="sarmageddon">
+            </div><br>
+            <div style="display: contents;" id="sarmageddon">
                 armageddon animation
                 <input type="checkbox" id="armageddon" checked="true">
             </div>
@@ -90,6 +83,12 @@
             <button class="devbutton" style="background-color: red; border-color: red;" onclick="dev.hardreset()">reset the game</button>
         </div>
 
+        <div style="position: fixed; bottom: 2px; left: 1px; width: 490px;">
+            <button id="max-time" style="width: 150px; height: 50px; border-color: aqua;" onclick="ups.forEach(x => { if(x.currencykey == 'time' && x.type != 'reset') x.buy();})">max time upgrades</button>
+            <button id="max-gold" style="width: 150px; height: 50px; border-color: gold;" onclick="ups.forEach(x => { if(x.currencykey == 'gold' && x.type != 'reset') x.buy();})">max gold upgrades</button>
+            <button id="max-IP" style="width: 150px; height: 50px; border-color: orange;" onclick="ups.forEach(x => { if(x.currencykey == 'infinitypoints' && x.type != 'reset') x.buy();})">max IP upgrades</button>
+            <button id="max-EP" style="width: 150px; height: 50px; border-color: purple;" onclick="ups.forEach(x => { if(x.currencykey == 'eternitypoints' && x.type != 'reset') x.buy();})">max EP upgrades</button>
+        </div>
     </main>
     <div id="tabholder" class="tabholder" style="display: none"></div>
 </body>
