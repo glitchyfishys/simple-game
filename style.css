@@ -92,6 +92,7 @@ span{
     top: 0px;
     left: 0px;
     border: 0px;
+    z-index: 25;
 }
 
 
