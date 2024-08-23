@@ -195,16 +195,16 @@ function updateUI(){
         else document.getElementById("sarmageddon").classList.add("hidden");
 
         
-        if(progress() > 0 && mobile) document.getElementById("max-time").classList.remove("hidden");
+        if(progress() >= 0 && mobile) document.getElementById("max-time").classList.remove("hidden");
         else document.getElementById("max-time").classList.add("hidden");
 
-        if(progress() > 1 && mobile) document.getElementById("max-gold").classList.remove("hidden");
+        if(progress() >= 1 && mobile) document.getElementById("max-gold").classList.remove("hidden");
         else document.getElementById("max-gold").classList.add("hidden");
 
-        if(progress() > 2 && mobile) document.getElementById("max-IP").classList.remove("hidden");
+        if(progress() >= 2 && mobile) document.getElementById("max-IP").classList.remove("hidden");
         else document.getElementById("max-IP").classList.add("hidden");
 
-        if(progress() > 3 && mobile) document.getElementById("max-EP").classList.remove("hidden");
+        if(progress() >= 3 && mobile) document.getElementById("max-EP").classList.remove("hidden");
         else document.getElementById("max-EP").classList.add("hidden");
     }
 
