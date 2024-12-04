@@ -2,32 +2,37 @@ dev = {
 
     addtime(BN){
         player.money.time.add(BN);
-        notify("added time",3);
+        notify("added time", 3);
     },
 
     addgold(BN){
         player.money.gold.add(BN);
-        notify("added gold",3);
+        notify("added gold", 3);
     },
 
     addinfinitypoints(BN){
         player.money.infinitypoints.add(BN);
-        notify("added IP",3);
+        notify("added IP", 3);
     },
 
     addeternitypoints(BN){
         player.money.eternitypoints.add(BN);
-        notify("added EP",3);
+        notify("added EP", 3);
     },
 
     adddilatedtime(BN){
         player.money.dilatedtime.add(BN);
-        notify("added DT",3);
+        notify("added DT", 3);
     },
 
     addrelics(BN){
         player.money.relics.add(BN);
         notify("added relics",3);
+    },
+
+    addabsolutismfragments(BN){
+        player.money.absolutismfragments.add(BN);
+        notify("added absolutism fragments", 3);
     },
 
     changechallengecompleation(id){
@@ -47,6 +52,7 @@ dev = {
     },
 
     progress(p){
+        if(p >= 6) player.reset.absolutism++;
         if(p >= 5) player.reset.armageddons++;
         if(p >= 4) player.money.eternitypoints.add(new BN(1.8,308));
         if(p >= 3) player.reset.eternites++;
@@ -56,10 +62,10 @@ dev = {
     },
 
     hardreset(){
-        if(!confirm("you should only reset when you reach 1e1e300 time \nare you sure?")) return false;
+        if(!confirm("you should only reset when you reach RESET or DESTROYED \nare you sure?")) return false;
         
         notify("game reset",3);
-        if(player.end) notify("use \"player.end = true\" in the console to unlock dev tools",10);
+        if(player.end) notify("use \"player.gameend = true\" in the console to unlock dev tools",10);
         player = this.set;
         ups.forEach(x => x.brought = false);
         challenges.forEach(x => {
@@ -88,18 +94,20 @@ dev = {
 
     set: {
         money: {
-            gold: new BN(0,0),
-            time: new BN(0,0),
-            dilatedtime: new BN(0,0),
-            infinitypoints: new BN(0,0),
-            eternitypoints: new BN(0,0),
-            relics: new BN(0,0),
+            gold: new BN,
+            time: new BN,
+            dilatedtime: new BN,
+            infinitypoints: new BN,
+            eternitypoints: new BN,
+            relics: new BN,
+            absolutismfragments: new BN,
         },
         upgrades:{
             timebits: 0,
             goldbits: 0,
             infinitybits: 0,
             eternitybits: 0,
+            absolutismbits: 0,
         },
         goldensliders:{
             value: [],
@@ -110,6 +118,7 @@ dev = {
             infinites: 0,
             eternites: 0,
             armageddons: 0,
+            absolutism: 0,
         },
         setings: {
             animations: []
@@ -121,10 +130,12 @@ dev = {
             ICcompeted : 0,
             ECunlocks: 0,
             ECcompeted : 0,
+            RealitysComplete: 0,
+            currentreality: -1,
             doomed: false,
         },
         dev: {
-            auto:  [],
+            auto: []
         },
         automation: [],
         tablefton: 0,
@@ -133,5 +144,6 @@ dev = {
         softcapeffectdiv: 1,
         strikebits:0,
         end: false,
+        lasttick: 0,
     },
 }

@@ -1,3 +1,10 @@
+html{
+    scrollbar-gutter: stable; 
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #666666 #333333;
+}
+
 button{
     border-color: pink;
     background-color: #555555;
@@ -21,7 +28,7 @@ text{
 }
 
 .tab{
-    width: 125px;
+    width: 122px;
     height: 35px;
 }
 
@@ -35,37 +42,49 @@ text{
     margin-bottom: 5px;
     display: inline-grid;
     width: 200px;
+    position: relative;
 }
 
 .upgrades{
-    margin-top: 25px;
-    margin-bottom: 50px;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 120px;
 }
 
 .toptext{
+    border-bottom: crimson solid 2px;
     align-self: center;
     text-align: center;
     color: white;
+    position: sticky;
+    top: 0px;
+    padding-top: 8px;
+    background-color: black;
+    z-index: 5;
 }
 
 body{
     background-color: black;
     overflow-x: hidden;
-    width: calc(100% - 135px);
-    margin-left: 135px;
+    width: calc(100% - 142px);
+    margin-left: 142px;
 }
 
 .notifyoverlay {
     position: fixed;
     right: -150px;
     top: 0px;
+    z-index: 100;
 }
+
 .notify {
     width: 150px;
     background-color: yellow;
     color: black;
     border: 5px white;
     text-align: center;
+    transition-duration: 250ms;
+    transform: translateX(0px);
 }
 
 .hidden {
@@ -135,6 +154,7 @@ span{
     margin-top: 10px;
     display: inline-grid;
     width: 45%;
+    position: relative;
 }
 
 .icdone{
@@ -150,12 +170,29 @@ span{
     text-align: center;
     align-items: center;
     margin-top: 10px;
+}
 
+.absolutism-tab{
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 150px;
 }
 
 .challenge-tab{
+    color: white;
     text-align: center;
     margin-top: 15px;
+    margin-bottom: 150px;
+}
+
+.reality-tab{
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 150px;
 }
 
 .startdilation{
@@ -396,4 +433,103 @@ input[type=checkbox]:checked{
     cursor: pointer;
     border: 2px solid purple;
     border-radius: 4px;
+}
+
+.picker {
+    border: rosybrown solid 3px;
+}
+
+.pickerbutton {
+    width: 140px;
+    height: 240px;
+    border: royalblue solid 1px;
+    background-color: #555555;
+    display: inline-grid;
+    margin: 5px;
+    position: relative;
+}
+
+.resetAbso {
+    width: 150px;
+    height: 25px;
+    background-color: red;
+    border-color: royalblue;
+}
+
+.lower{
+    position: absolute;
+    bottom: 0px;
+    text-align: center;
+    width: 100%;
+    transform: translateX(-5px);
+}
+
+.mobile-buttons {
+    position: fixed;
+    bottom: 2px;
+    left: 1px;
+    width: 490px;
+}
+
+.mobile-button {
+    width: 100px;
+    height: 50px;
+}
+
+.reality {
+    width: 200px;
+    height: 300px;
+    border: #ffffff solid 5px;
+    position: relative;
+    margin-left: 15px;
+    margin-bottom: 15px;
+}
+
+.reality-icon {
+    width: 100px;
+    height: 100px;
+    border: #ffffff solid 5px;
+    border-radius: 50%;
+    background-color: black;
+    border-color: inherit;
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reality-icon:hover {
+    filter: invert(1);
+}
+
+.Ricon {
+    transform: translateX(-50%);
+    font-size: 80px;
+}
+
+.huh{
+    width: 40px;
+    height: 20px;
+    border-color: white;
+    z-index: 50;
+}
+
+.huh:hover{
+    border-color: red;
+}
+
+
+
+
+
+
+
+/* keep this at the bottom  */
+.void {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    width: 0px;
+    height: 0px;
+    left: 0px;
 }

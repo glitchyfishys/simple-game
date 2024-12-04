@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<title>eternea inftis</title>
 <html>
-<head>
-
-    <link rel="stylesheet" href="style.css">
+    <head>
+    <title>eternea inftis</title>
+    <link id="styles" rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
     <main id="main" style="display: none">
@@ -11,35 +12,42 @@
             some game
         </div>
         <div class="upgrades" id="upgrades"></div>
-        <div class="goldsliders" id="goldsliders"><text id="slidermax"></text></div>
+        <div class="goldsliders" id="goldsliders"><div style="color: white;" id="slidermax"></div></div>
         <div id="notify" class="notifyoverlay"></div>
         <div id="auto" class="auto">
             toggle autobuyers<br>
         </div>
         <div id="settings" class="settings">
-            <span id="settingstext"></span><br><br>
-            <div style="display: contents;" id="sgoldifiy">
+            <div id="settingstext"></div><br><br>
+            <div class="hidden" style="display: contents;" id="sgoldifiy">
                 goldify animation
             <input type="checkbox" id="goldifiy" checked="true">
             </div><br>
-            <div style="display: contents;" id="scrunch">
+            <div class="hidden" style="display: contents;" id="scrunch">
                 infinity animation
                 <input type="checkbox" id="crunch" checked="true">
             </div><br>
-            <div style="display: contents;" id="seternity">
+            <div class="hidden" style="display: contents;" id="seternity">
                 eternity animation
                 <input type="checkbox" id="eternity" checked="true">
             </div><br>
 
-            <div style="display: contents;" id="sdilation">
+            <div class="hidden" style="display: contents;" id="sdilation">
                 dilation animation
                 <input type="checkbox" id="dilation" checked="true">
             </div><br>
-            <div style="display: contents;" id="sarmageddon">
+            <div class="hidden" style="display: contents;" id="sarmageddon">
                 armageddon animation
                 <input type="checkbox" id="armageddon" checked="true">
+            </div><br>
+            <div class="hidden" style="display: contents;" id="sabsolutism">
+                absolutism animation
+                <input type="checkbox" id="Babsolutism" checked="true">
             </div>
             <br><br>
+            <button class="devbutton" onclick="importsave()">import save</button>
+            <button class="devbutton" onclick="exportsave()">export save</button>
+            <br>
             <button class="devbutton" style="background-color: red; border-color: red;" onclick="dev.hardreset()">reset the game</button>
         </div>
         <div id="challenge" class="challenge-tab">
@@ -49,9 +57,25 @@
 
         <div id="dilation-tab" class="dilation-tab">
             <div>starting dilation causes an eternity <br>
-                completing an eternity will give dilated time based on time</div>
-            <button onclick="startdilation()" class="startdilation" id="startdilation"><span>hi</span></button>
+                completing an eternity will give dilated time based on time
+            </div>
+            <button onclick="startdilation()" class="startdilation" id="startdilation"><div>hi</div></button>
         </div>
+
+        <div id="absolutism-tab" class="absolutism-tab">
+            <div>pick an effect<br>
+            </div>
+            <button class="resetAbso" onclick="confirm('this will cause an absolutism reset') ? absolutism(true) : false">respec</button>
+            <div id="picker" class="pick"></div>
+        </div>
+
+        <div id="reality-tab" class="reality-tab">
+            enter a reality and complete it for a reward<br>
+            absolutism to complete the reality you selected and to leave reset your absolutism upgrades
+
+            <div id="reality" style="display: flex; flex-wrap: wrap; justify-content: center;"></div>
+        </div>
+
         <div id="dev" class="dev" style="color: white;">
             <br>
             <span>add, unlock, dev stuff </span><br>
@@ -62,8 +86,9 @@
             <button class="devbutton" onclick="dev.addeternitypoints(BN.prase(document.getElementById('t').value))">add EP</button>
             <button class="devbutton" onclick="dev.adddilatedtime(BN.prase(document.getElementById('t').value))">add DT</button>
             <button class="devbutton" onclick="dev.addrelics(BN.prase(document.getElementById('t').value))">add relics</button>
+            <button class="devbutton" onclick="dev.addabsolutismfragments(BN.prase(document.getElementById('t').value))">add AF</button>
             <br><br>
-            <button class="devbutton" onclick="dev.progress(progress())">game progress</button>
+            <button class="devbutton" onclick="dev.progress(game.progress)">game progress</button>
             <br><br>
             <button class="devbutton" onclick="dev.changechallengecompleation(document.getElementById('tt').value)">toggle challenge compleation</button>
             <button class="devbutton" onclick="dev.completechallengeupto(document.getElementById('tt').value)">complete challenges up to x</button>
@@ -83,27 +108,41 @@
             <button class="devbutton" style="background-color: red; border-color: red;" onclick="dev.hardreset()">reset the game</button>
         </div>
 
-        <div style="position: fixed; bottom: 2px; left: 1px; width: 490px;">
-            <button id="max-time" style="width: 150px; height: 50px; border-color: aqua;" onclick="ups.forEach(x => { if(x.currencykey == 'time' && x.type != 'reset') x.buy();})">max time upgrades</button>
-            <button id="max-gold" style="width: 150px; height: 50px; border-color: gold;" onclick="ups.forEach(x => { if(x.currencykey == 'gold' && x.type != 'reset') x.buy();})">max gold upgrades</button>
-            <button id="max-IP" style="width: 150px; height: 50px; border-color: orange;" onclick="ups.forEach(x => { if(x.currencykey == 'infinitypoints' && x.type != 'reset') x.buy();})">max IP upgrades</button>
-            <button id="max-EP" style="width: 150px; height: 50px; border-color: purple;" onclick="ups.forEach(x => { if(x.currencykey == 'eternitypoints' && x.type != 'reset') x.buy();})">max EP upgrades</button>
+        <div class="mobile-buttons">
+            <div style="display: flex;">
+                <button id="max-save" class="mobile-button hidden" style="border-color: royalblue;" onclick="save()">save game</button>
+                <button id="max-time" class="mobile-button hidden" style="border-color: aqua;" onclick="ups.forEach(x => { if(x.currencykey == 'time' && x.type != 'reset') x.buy();})">max time upgrades</button>
+                <button id="max-gold" class="mobile-button hidden" style="border-color: gold;" onclick="ups.forEach(x => { if(x.currencykey == 'gold' && x.type != 'reset') x.buy();})">max gold upgrades</button>
+                <button id="max-IP" class="mobile-button hidden" style="border-color: orange;" onclick="ups.forEach(x => { if(x.currencykey == 'infinitypoints' && x.type != 'reset') x.buy();})">max IP upgrades</button>
+                <button id="max-EP" class="mobile-button hidden" style="border-color: purple;" onclick="ups.forEach(x => { if(x.currencykey == 'eternitypoints' && x.type != 'reset') x.buy();})">max EP upgrades</button>
+            </div>
+            <div style="display: flex;">
+                <button id="reset-gold" class="mobile-button hidden" style="border-color: gold;" onclick="ups[8].buy();">goldify</button>
+                <button id="reset-IP" class="mobile-button hidden" style="border-color: orange;" onclick="ups[19].buy();">infinity</button>
+                <button id="reset-EP" class="mobile-button hidden" style="border-color: purple;" onclick="ups[29].buy();">eternity</button>
+                <button id="reset-DIL" class="mobile-button hidden" style="border-color: lime;" onclick="startdilation();">dilation</button>
+                <button id="reset-ARM" class="mobile-button hidden" style="border-color: crimson;" onclick="ups[49].buy();">armagedon</button>
+                <button id="reset-ABS" class="mobile-button hidden" style="border-color: royalblue;" onclick="ups[61].buy();">absolutism</button>
+            </div>
         </div>
     </main>
     <div id="tabholder" class="tabholder" style="display: none"></div>
+    <!-- hi, this is only here for stuff like Ξξτι to work-->
 </body>
     <script src="keydrown.js"></script>
     <script src="bignumber.js"></script>
     <script src="dev.js"></script>
-    <script src="upgrade.js"></script>
-    <script src="timeupgrades.js"></script>
+    <script src="upgradeClass.js"></script>
+    <script src="upgrades.js"></script>
     <script src="reset.js"></script>
     <script src="notify.js"></script>
     <script src="tabs.js"></script>
     <script src="goldensliders.js"></script>
     <script src="autobuyers.js"></script>
+    <script src="absolutismpick.js"></script>
     <script src="conts.js"></script>
     <script src="challenges.js"></script>
+    <script src="realitys.js"></script>
     <script src="strikes.js"></script>
     <script src="game.js" onload="start()"></script>
 </html>

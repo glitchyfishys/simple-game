@@ -13,7 +13,7 @@ const tabs = [
         switch: () => changetab(1),
         tabid: "goldsliders",
         bgcolor: "gold",
-        show: () => ups[16].brought,
+        show: () => ups[16].brought || game.progress > 2,
         id: "tab-gold"
     },
     {
@@ -21,7 +21,7 @@ const tabs = [
         switch: () => changetab(2),
         tabid: "challenge",
         bgcolor: "blue",
-        show: () => progress() > 2 || player.challenge.hasunlockedchallenges,
+        show: () => game.progress > 3 || player.challenge.hasunlockedchallenges,
         id: "tab-challenge"
     },
     {
@@ -29,20 +29,36 @@ const tabs = [
         switch: () => changetab(3),
         tabid: "dilation-tab",
         bgcolor: "lime",
-        show: () => progress() > 4 || player.money.eternitypoints.gte(new BN(1,308)),
+        show: () => game.progress > 4 || player.money.eternitypoints.gte(new BN(1,308)),
         id: "tab-dilation"
     },
     {
-        name: "automation",
+        name: "absolutism",
         switch: () => changetab(4),
+        tabid: "absolutism-tab",
+        bgcolor: "royalblue",
+        show: () => game.progress > 6 || player.money.time.gte(new BN(1,1e305)),
+        id: "tab-absolutism"
+    },
+    {
+        name: "reality",
+        switch: () => changetab(5),
+        tabid: "reality-tab",
+        bgcolor: "#aa44ff",
+        show: () => pick[12].brought,
+        id: "tab-reality"
+    },
+    {
+        name: "automation",
+        switch: () => changetab(6),
         tabid: "auto",
         bgcolor: "#555",
-        show: () => ups[23].brought,
+        show: () => ups[23].brought || game.progress > 6,
         id: "tab-auto"
     },
     {
         name: "settings",
-        switch: () => changetab(5),
+        switch: () => changetab(7),
         tabid: "settings",
         bgcolor: "gray",
         show: () => true,
@@ -50,10 +66,10 @@ const tabs = [
     },
     {
         name: "dev",
-        switch: () => changetab(6),
+        switch: () => changetab(8),
         tabid: "dev",
         bgcolor: "black",
-        show: () => player.end,
+        show: () => player.gameend,
         id: "tab-dev"
     }
 ]
@@ -89,15 +105,17 @@ function changetab(id = 0, d = false){
     tabs.forEach(x => document.getElementById(x.tabid).classList.add("hidden"))
     document.getElementById(tabs[id].tabid).classList.remove("hidden");
     player.tablefton = id;
+
+    if(id == 0){
+        ups.forEach(x => x.tick())
+    }
+    else if(id == 5){
+        Creality.forEach(x => x.update());
+    }
 }
 
-const tabdefaultdata ={
-    name: "name",
-    switch: () => changetab(1),
-    id: "g"
-}
 
-function makenewtab(data = tabdefaultdata){
+function makenewtab(data){
     const para = document.createElement("button");
 
     const element = document.getElementById("tabholder");

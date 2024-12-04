@@ -101,10 +101,10 @@ const challengedata = [
         bordercolor: "purple",
         discription: "time ^ 0.5 but gold ^5 <br> reward: IP ^ 50",
         goaldiscription: () => {
-            if(ups[30].brought) return (player.challenge.doomed ? "reach e14000 time and the e5000 gold goal has been destabilized" : "reach e14000 time and the e1000 gold goal has been destabilized");
-            return (player.challenge.doomed ? "reach e14000 time and lessthan e5000 gold" : "reach e14000 time and lessthan e1000 gold");
+            if(ups[30].brought || pick[5].brought) return (player.challenge.doomed ? "reach e14000 time and the e5000 gold goal has been destabilized" : "reach e14000 time and the e1000 gold goal has been destabilized");
+            return (player.challenge.doomed ? `reach e14000 time and lessthan e${Math.floor(5000 * pick[10].effectordefault(1).toNumber())} gold` : `reach e14000 time and lessthan e${Math.floor(1000 * pick[10].effectordefault(1).toNumber())} gold`);
         },
-        goal: () => player.money.time.gt(new BN(1,14000)) && (player.money.gold.lt(new BN(1,1000)) || ups[30].brought ||(player.challenge.doomed && player.money.gold.lt(new BN(1,5000)))),
+        goal: () => player.money.time.gt(new BN(1,14000)) && (player.money.gold.lt(new BN(1,1000).pow(pick[10].effectordefault(1))) || ups[30].brought || pick[5].brought ||(player.challenge.doomed && player.money.gold.lt(new BN(1,5000).pow(pick[10].effectordefault(1))))),
         show: () => player.money.time.gt(new BN(1,1.15e5)),
         finish: () => infinity(),
     },
@@ -196,7 +196,7 @@ function makenewchallenge(data = tabdefaultdata){
     const element = document.getElementById("challenge");
     let child = element.appendChild(para);
     child.classList.add("challenge");
-    child.classList.add("hidden");
+    child.classList.add("void");
     child.style.borderColor = data.bordercolor;
     child.appendChild(sp);
     return child;
@@ -249,20 +249,20 @@ class challenge{
         if(this.challengetype == "eternity") notify("started challenge: " + this.name,3 , "#aa00aa")
     }
 
-    showchallenge(){
-        if(!this.ele.classList.contains("hidden")) return true;
-        if(this.show()) this.ele.classList.remove("hidden");
+    showchallenge(f = false){
+        if(!this.ele.classList.contains("void")) return true;
+        if(this.show() || f) this.ele.classList.remove("void");
         else return false;
-        if(this.challengetype == "infinity") notify("unlocked challenge: " + this.name,3 , "#FFaa00")
-        if(this.challengetype == "eternity") notify("unlocked challenge: " + this.name,3 , "#aa00aa")
+        if(this.challengetype == "infinity" && !f) notify("unlocked challenge: " + this.name,3 , "#FFaa00")
+        if(this.challengetype == "eternity" && !f) notify("unlocked challenge: " + this.name,3 , "#aa00aa")
     }
 
-    tick(){
-        this.showchallenge();
+    tick(f = false){
+        this.showchallenge(f);
         let text = this.name;
         text += "<br>" + this.discription;
         text += "<br> goal: " + (typeof this.goaldiscription == "function" ? this.goaldiscription() : this.goaldiscription);
-        text += "<br> effect: " + this.effectordefault().toString();
+        text += "<br> <div class='lower'> effect: " + this.effectordefault() + "</div>";
         this.ele.children[0].innerHTML = text;
 
         if(player.challenge.challengein == this.id){
@@ -314,7 +314,7 @@ var challenges = [];
 function nextchallenge(){
     let e = "";
     challenges.forEach(x =>{
-        if(progress() < 4 && x.id == 7 && e == "") e = "all challenges are unlocked";
+        if(game.progress < 4 && x.id == 7 && e == "") e = "all challenges are unlocked";
         if(!x.showchallenge() && e == "") e = x.req + "<br>for challenge " + x.name;
         if(x.id == 11 && e == "") e = "all challenges are unlocked";
     });

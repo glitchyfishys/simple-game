@@ -1,4 +1,7 @@
 
+// BN.mult(player.money.time, 25) will not effect the varable
+// player.money.time.mult(25) will effect the vaiable
+
 class BN{
     m=0;
     e=0;
@@ -11,6 +14,11 @@ class BN{
             this.m = 1.79;
             this.e = Math.max(308,e);
             if(e == Infinity) this.e = 1.79e308; 
+        }
+        else if(typeof(m) == "string") {
+            const n = BN.prase(m);
+            this.m = n.m;
+            this.e = n.e;
         }
         else if(m instanceof BN || typeof(m) == "object") {
             this.m = m.m;
@@ -141,7 +149,6 @@ class BN{
         this.m = 10 ** (this.e % 1);
         this.e = Math.floor(this.e);
 
-        if(this.gt(this.cap())) return this.cap();
         return this;
     }
 
@@ -164,7 +171,6 @@ class BN{
         bignum.m = 10 ** (bignum.e % 1);
         bignum.e = Math.floor(bignum.e);
 
-        if(new BN(bignum).gt(this.cap())) return this.cap();
         return new BN(bignum);
     }
 
@@ -215,11 +221,6 @@ class BN{
             if (this.e < 0) this.e = Math.ceil(this.e);
             this.e = Math.floor(this.e);
         }
-
-        if(this.gt(this.cap())) {
-            this.m = this.cap().m;
-            this.e = this.cap().e;
-        }
         
         return this;
     }
@@ -240,26 +241,31 @@ class BN{
             if (bn.e < 0) bn.e = Math.ceil(bn.e);
             bn.e = Math.floor(bn.e);
         }
-        if(bn.gt(this.cap())) return this.cap();
         return bn;
     }
 
-    toString(type = 0,min = 5) {
+    toString(type = 0,min = 5, override = false) {
+        if(player.softcapeffectdiv == 0) return "RESET";
+        if(Creality[10].complete) return "DESTROYED";
+        let str =""
         if(this.e > 1e6){
             let m = this.m.toFixed(1).toString();
             let e = Math.log10(this.e);
-            return m + "e" + (10 ** (e % 1) ).toFixed(2).toString() + "e" + Math.floor(e).toString();
+            str = m + "e" + (10 ** (e % 1) ).toFixed(2).toString() + "e" + Math.floor(e).toString();
         }
+        else if(type == 0){
+            if (Math.abs(this.e) <= min) str = (this.m * 10 ** this.e).toFixed(2).toString()
+            else str = this.round(2).toString() + "e" + this.e.toString();
+        }
+        else if(type == 1){
+            if (Math.abs(this.e) <= min) str = (this.m * 10 ** this.e).toFixed(2).toString()
+            else str =  this.round(2).toString() + "e" + this.e.toString();
+        }
+        return (ups[62].brought && !override) ? textGlitch(str, 0.1) : str;
+    }
 
-        if(type == 0){
-            if (Math.abs(this.e) <= min) return (this.m * 10 ** this.e).toFixed(2).toString()
-            return this.round(2).toString() + "e" + this.e.toString();
-        }
-        if(type == 1){
-            if (Math.abs(this.e) <= min) return (this.m * 10 ** this.e).toFixed(2).toString()
-            return this.round(2).toString() + "e" + this.e.toString();
-        }
-        
+    toNumber(){
+        return this.m * (10 ** this.e);
     }
 
     round(r = 2){
