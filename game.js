@@ -235,10 +235,10 @@ function updateUI(){
         you can save with ctrl + s<br>
         you can change tabs with arrow keys<br>
         pressing V inverts colors        
-        ${(Creality[9].active && ( game.alphabits & 4)  == 0) ? "<br> <button class='huh' id='huh' onclick='game.alphabits += (game.alphabits & 4) == 0 ? 4 : 0'>???</button>": ""}`;
+        ${(Creality[9].active && ( game.alphabits & 4) == 0) ? "<br> <button class='huh' id='huh' onclick='game.alphabits += (game.alphabits & 4) == 0 ? 4 : 0'>???</button>": ""}`;
         } else {
         
-        document.getElementById("settingstext").innerHTML = `${(Creality[9].active && ( game.alphabits & 4)  == 0) ? "<br> <button class='huh' id='huh' onclick='game.alphabits += (game.alphabits & 4 == 0) ? 4 : 0'>???</button>": ""}`;
+        document.getElementById("settingstext").innerHTML = `${(Creality[9].active && ( game.alphabits & 4) == 0) ? "<br> <button class='huh' id='huh' onclick='game.alphabits += (game.alphabits & 4) == 0 ? 4 : 0'>???</button>": ""}`;
         document.getElementById("max-save").classList.remove("hidden");
         
         document.getElementById("max-time").classList.remove("hidden");
@@ -510,7 +510,7 @@ function load(save = undefined){
 
     
     player.end = p.end;
-    if(player.gameend && p.gameend) player.gameend = p.gameend;
+    if(p.gameend) player.gameend = p.gameend;
     player.tablefton = p.tablefton;
     player.hasunlockedchalenges = p.hasunlockedchalenges;
     player.challenge.challengein = p.challenge.challengein;
@@ -543,20 +543,12 @@ function load(save = undefined){
     
     
     ups.forEach(x => {
-        if(player.upgrades.timebits & (1 << x.bitid) && x.ugkey == "timebits") x.brought = true;
-    })
-    ups.forEach(x => {
-        if(player.upgrades.goldbits & (1 << x.bitid) && x.ugkey == "goldbits") x.brought = true;
-    })
-    ups.forEach(x => {
-        if(player.upgrades.infinitybits & (1 << x.bitid) && x.ugkey == "infinitybits") x.brought = true;
-    })
-    ups.forEach(x => {
-        if(player.upgrades.eternitybits & (1 << x.bitid) && x.ugkey == "eternitybits") x.brought = true;
-    })
-    ups.forEach(x => {
-        if(player.upgrades.absobits & (1 << x.bitid) && x.ugkey == "absobits") x.brought = true;
-    })
+        if(x.ugkey == "timebits") x.brought = player.upgrades.timebits & (1 << x.bitid);
+        else if(x.ugkey == "goldbits") x.brought = player.upgrades.goldbits & (1 << x.bitid);
+        else if(x.ugkey == "infinitybits") x.brought = player.upgrades.infinitybits & (1 << x.bitid);
+        else if(x.ugkey == "eternitybits") x.brought = player.upgrades.eternitybits & (1 << x.bitid);
+        else if(x.ugkey == "absobits") x.brought = player.upgrades.absobits & (1 << x.bitid);
+    });
 
     Object.keys(player.reset).forEach(Key => {
         if(typeof player.reset[Key] == "number" && typeof p.reset[Key] == "number") player.reset[Key] = p.reset[Key]

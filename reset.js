@@ -384,9 +384,10 @@ function absolutism(respec= false){
     player.challenge.currentreality = -1;
     game.alphabits = 0;
 
-    if(!respec) player.money.absolutismfragments.add(ups[60].effectordefault(1));
-    if(!respec) player.reset.absolutism += absresetgain();
-
+    if(!respec) {
+        player.money.absolutismfragments.add(ups[60].effectordefault(1));
+        player.reset.absolutism += absresetgain();
+    }   
     if(respec) pick.forEach(x => x.reset());
     
     player.challenge.doomed = false;

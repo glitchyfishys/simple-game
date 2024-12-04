@@ -151,7 +151,7 @@ class strike {
 
     trigger(){
         if(this.triggered) return false;
-        this.text.forEach(x => alert(this.id >= 27 ? textGlitch(this.name + ":\n" + x, (this.id == 26 ? 0.2 : 0.5)) : (this.name + ":\n" + x)));
+        this.text.forEach(x => alert(this.id >= 27 ? textGlitch(this.name + ":\n" + x, (this.id == 27 ? 0.2 : 0.4)) : (this.name + ":\n" + x)));
         this.triggered = true;
     }
 }

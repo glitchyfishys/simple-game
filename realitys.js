@@ -93,7 +93,7 @@ const realitys = [
         id: 5,
         name: "Zedom's reality",
         show: () => Creality[4].complete,
-        effect: () => 500 * ((reality.completedHardAmount+1) ** 2),
+        effect: () => !Creality[5].complete ? 1 : 500 * ((reality.completedHardAmount+1) ** 2),
         icon: "Ϟ",
         discription: "reward: unlock hard realitys that force others to be active and gain a multiplier to aboslutisms for completing hard realitys, along with imporving absolutism upgrades",
         color: "#aaaaff",
@@ -171,7 +171,6 @@ const realitys = [
         color: "black",
         forced: () => false,
         nerfs: {
-            all: "first five realitys",
             time: 1e-10,
             gold: 5e-4,
             IP: 2.5e-4,
@@ -229,6 +228,7 @@ class reality{
     finish(){
         if(this.complete) return;
         player.challenge.RealitysComplete += (2 ** this.id);
+        if(this.id < 6) glitchstrikes[12 + (this.id * 2)].trigger();
         if(this.id == 9) glitchstrikes[25].trigger();
         if(this.id == 10) glitchstrikes[28].trigger();
     }

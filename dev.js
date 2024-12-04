@@ -108,6 +108,7 @@ dev = {
             infinitybits: 0,
             eternitybits: 0,
             absolutismbits: 0,
+            absobits: 0,
         },
         goldensliders:{
             value: [],
@@ -144,6 +145,7 @@ dev = {
         softcapeffectdiv: 1,
         strikebits:0,
         end: false,
+        gameend: false,
         lasttick: 0,
     },
 }
