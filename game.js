@@ -415,7 +415,7 @@ function timemults(){
 
 
     mult.mult(goldeffect());
-    mult.mult(sliders[1].effectordefault(1));
+    mult.pow(sliders[1].effectordefault(1));
     mult = softcap(mult);
     mult.pow(challengeeffect("time"));
     mult = challengemult(mult, "time").mult(ResetBonus());
