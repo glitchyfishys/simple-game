@@ -338,7 +338,7 @@ function armageddon(){
 
 function relicsgained(){
     if((player.reset.armageddons == 0 && !pick[10].brought) || Creality[1].active || Creality[3].active) return new BN(0); 
-    let gain = BN.log(player.money.time, 10);
+    let gain = BN.log( BN.add(player.money.time, 2), 10);
     gain.mult(BN.log( BN.add(player.money.gold, 2), 10).mult(1.5));
     gain.mult(BN.log( BN.add(player.money.infinitypoints, 2), 10).mult(2.5));
     gain.mult(BN.log( BN.add(player.money.eternitypoints, 2), 10).mult(5));
