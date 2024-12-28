@@ -408,6 +408,7 @@ function timemults(){
     mult.pow(ups[34].effectordefault(1, "time"));
     mult.pow(ups[43].effectordefault(1));
     mult.pow(ups[46].effectordefault(1));
+    mult.pow(ups[53].effectordefault(1));
 
 
     mult.mult(pick[0].effectordefault(1));

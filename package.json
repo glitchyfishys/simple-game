@@ -1,0 +1,13 @@
+{
+  "name": "simple-game",
+  "version": "1.0.0",
+  "description": "game :)",
+  "main": "Zelect.js",
+  "scripts": {
+    "elect": "electron ."
+  },
+  "devDependencies": {
+    "@electron/packager": "^18.3.6",
+    "electron": "^33.2.1"
+  }
+}
